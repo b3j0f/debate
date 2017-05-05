@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Foire aux questions</h2>
+
+<ul class="collapsible popout" data-collapsible="accordion">
+	<li id="name">
+		<div class="collapsible-header"><i class="material-icons">settings</i>D'où vient le nom ?</div>
+		<div class="collapsible-body">
+			<p>
+				CoUseIt signifie "Collective-Use-It", ou "Utilisez-le ensemble".
+			</p>
+		</div>
+	</li>
+	<li id="goal">
+		<div class="collapsible-header"><i class="material-icons">settings</i>Quel est le but de la plateforme ?</div>
+		<div class="collapsible-body">
+			<p>
+				Faciliter les usages de biens communs à l'aide de la géolocalisation et de la planification.
+			</p>
+		</div>
+	</li>
+	<li id="status">
+		<div class="collapsible-header" data-collapsible="accordion">
+			<i class="material-icons">line_style</i>Quel est votre statut ?
+		</div>
+		<div class="collapsible-body">
+			<p>
+				CoUseIt est une initiative citoyenne qui n'est pour l'instant rattachée à aucun cadre légal.
+			</p>
+			<p>
+				La plateforme est donc un <a href="https://fr.wikipedia.org/wiki/Biens_communs" target="_blank">bien commun</a>, <a href="https://github.com/b3j0f/couseit" target="_blank">open-source</a>, non lucratif au dela des besoins financiers nécessaires à sa mise à disposition.
+			</p>
+		</div>
+	</li>
+	<li id="money">
+		<div class="collapsible-header" data-collapsible="accordion">
+			<i class="material-icons">attach_money</i>Comment gagnez-vous de l’argent ?
+		</div>
+		<div class="collapsible-body">
+			<p>
+				Par les dons. Nous utilisons un compte <a href="https://liberapay.com/couseit">liberapay</a> pour que vous puissiez effectuer des dons afin de pouvoir rémunérer la location des serveurs.
+			</p>
+			<p>
+				Actuellement, ce coût s'élève à environ 5€/mois. Et le nom de domaine à 15€/an.
+			</p>
+		</div>
+	</li>
+	<li id="platform">
+		<div class="collapsible-header" data-collapsible="accordion">
+			<i class="material-icons">smartphone</i>Je possède un smartphone, puis-je utiliser l’application ?
+		</div>
+		<div class="collapsible-body">
+			<p>
+				Pour l'instant, l'application n'est disponible que via ce site web. Alors il vous suffit de vous rendre à <a href="{{ host }}">cette addresse {{ host }}</a> pour en profiter.
+			</p>
+			<p>
+				L’application sera prochainement disponible sur Android, iPhone et Windows phone. N’hésitez à suivre nos pages Facebook et Twitter afin de rester informé.
+			</p>
+		</div>
+	</li>
+	<li id="foreign">
+		<div class="collapsible-header" data-collapsible="accordion">
+			<i class="material-icons">map</i>Puis je utiliser CoUseIt à l’étranger ?
+		</div>
+		<div class="collapsible-body">
+			<p>
+				L'application n'a pas de frontière, alors profitez-en pour faire connaître ce projet en dehors de la métropole et proposez vos traductions <a href="#">ici</a> !
+			</p>
+		</div>
+	</li>
+	<li id="help">
+		<div class="collapsible-header" data-collapsible="accordion">
+			<i class="material-icons">help_outline</i>Comment faire pour vous aider ?
+		</div>
+		<div class="collapsible-body">
+			<p>
+				Déjà en utilisant l’application afin d’aider les personnes en difficulté, nous sommes très fiers de participer à votre élan de solidarité.
+			</p>
+			<p>
+				En partageant nos actualités et en parlant de CoUseIt. Vous pouvez également nous faire une donation depuis notre site internet en cliquant sur "faire un don" présent dans le menu, ceci afin de faire évoluer l’application et nos actions sur le terrain.
+			</p>
+		</div>
+	</li>
+	<li id="update">
+		<div class="collapsible-header" data-collapsible="accordion">
+			<i class="material-icons">system_update</i>Prévoyez-vous de nouvelles mise à jour ou nouvelles fonctionnalités ?
+		</div>
+		<div class="collapsible-body">
+			<p>
+				Si vous souhaitez contribuer, proposer une fonctionalité, ou critiquer l'application, n'hésitez pas à le faire <a href="https://github.com/b3j0f/couseit/issues">ici</a>
+			</p>
+		</div>
+	</li>
+</ul>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% if supply.conditions.all %}
+<ul class="collection{% if name %} with-header{% endif %}">
+	{% if name %}<li class="collection-header"><h4>{{ name }}</h4></li>{% endif %}
+	<li class="collection-item"><span class="new badge" id=""></span>
+		{% for condition in conditionset.conditions.all %}
+		{{ condition.name }} : {{ condition.amount}}
+		{% endfor %}
+	</li>
+</ul>
+{% endif %}

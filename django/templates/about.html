@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<h1>À propos</h1>
+
+<div class="section scrollspy" id="history" name="Historique">
+
+	<h2>Historique</h2>
+
+	<div class="parallax-container">
+		<div class="parallax"><img src="{% static "img/hourglass-620397_640.jpg" %}"></div>
+	</div>
+
+	<p>
+		Qui n'a jamais voulu dévisser une vis sans avoir l'outil adéquat, dans un endroit qu'il ne connait pas ?
+	</p>
+	<p>
+		Eh bien, en cherchant une solution simple à ce problème, nous avons posé la question autour de nous, et nous n'avons pas eu de réponse claire.
+	</p>
+	<p>
+		Nous nous sommes rapidement rendu compte que ce besoin concernait énormément de monde, et s'étendait à beaucoup plus de choses qu'un simple tournevis.
+	</p>
+	<p>
+		Il est ironique de voir que dans notre société de consommation, où nous croulons litéralement sous la production de biens, nous avons au final tant de mal à en profiter...
+	</p>
+	<p>
+		La grande distribution arrive à courir après la croissance en mutualisant de plus en plus ses services, alors pourquoi est-ce que le consommateur n'en ferait pas autant ?
+	</p>
+
+</div>
+
+<div class="section scrollspy" id="problems" name="Problèmes">
+
+	<h2>Problèmes</h2>
+
+	<div class="parallax-container">
+		<div class="parallax"><img src="{% static 'img/laundry-413688_640.jpg' %}"></div>
+	</div>
+
+	<p>
+		Nous résumons les problèmes auxquels nous souhaitons répondre à la question de "Comment optimiser l'utilisation de biens au sein d'une collectivité ?"
+	</p>
+
+	<p>
+		En nous intéressant au problème de la mutualisation d'usage de biens, nous avons regardé ce qu'il était déjà possible de faire actuellement :
+	</p>
+
+	<table class="striped">
+		<caption>Solutions d'échanges de biens</caption>
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					Système d'échange local (SEL)
+				</td>
+				<td>
+					Monnaie basée sur le temps, qui propose également un annuaire de services et biens en échange de SEL. Si vous ne connaissez pas, il y en a certainement près de chez vous
+				</td>
+			</tr>
+			<tr>
+				<td><a href="https://www.leboncoin.fr/" target="_blank">Le bon coin</a></td>
+				<td>Site d'annonces de biens et services à vendre très populaire</td>
+			</tr>
+			<tr>
+				<td><a href="http://www.pap.fr/" target="_blank">De particulier à particuliers</a></td>
+				<td>Site de vente/location de logements</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="http://www.entreparticuliers.com/" target="_blank">Entre particuliers</a>
+				</td>
+				<td>
+					Site de vente/location de services et de biens entre particuliers
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="http://www.cuma.fr/" target="_blank">CUMA</a>
+				</td>
+				<td>
+					Réseau de coopératives qui aide des agriculteurs à acheter du matériel en commun
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="http://fr.zilok.com/" target="_blank">ZILOK</a>
+				</td>
+				<td>
+					Platforme de location de biens
+				</td>
+			</tr>
+			<tr>
+				<td><a href="http://www.kiloutou.fr/" target="_blank">Kiloutou</a></td>
+				<td>
+					Location de matériel de construction entre professionnels et particuliers
+				</td>
+			</tr>
+			<tr>
+				<td><a href="https://mytroc.fr/" target="_blank">My troc</a></td>
+				<td>
+					Troc de biens, prêts et services à l'aide d'une monnaie numérique qui est distribuée en fonction de l'activité (nouvelle annonce, meilleure annonce du mois, etc.).
+				</td>
+			</tr>
+			<tr>
+				<td><a href="https://tipimi.fr/" target="_blank">Tipimi</a></td>
+				<td>
+					Solution de prêt entre particuliers et professionnels, et d'achats groupés, monétisés à l'aide de "points" (monnaie créée en fonction de l'activité des membres). Inscription à partir de 10€ par an, ou solution spécifique aux entreprises et réseaux d'artisants. L'objectif est de réaliser les échanges dans la métropole lilloise à l'aide de rencontres physiques à l'aide de la plateforme ou d'évènements/ateliers proposés depuis leur local.
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+
+	<p>
+		Aucune des solutions ci-dessus ne répond de manière pertinente au besoin d'emprunter rapidement et facilement un tournevis.
+	</p>
+
+	<h5>
+		Alors avant d'avoir à nouveau besoin d'un tournevis au fin fond du Gard, nous avons décidé de développer cette plateforme !
+	</h5>
+
+</div>
+
+<div class="section scrollspy" id="solution" name="Solution">
+
+	<h2>
+		Solution
+	</h2>
+
+	<div class="parallax-container">
+		<div class="parallax">
+			<img src="{% static 'img/connect-20333_640.jpg' %}">
+		</div>
+	</div>
+
+
+	<table class="striped">
+		<caption>Fonctionnalités de la plateforme</caption>
+		<thead>
+			<tr>
+				<th>Fonctionnalités</th><th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Utilisateur</td>
+				<td>Personne ou groupe de personnes qui répond aux conditions d'échange, d'utilisation et de stockage d'un bien</td>
+			</tr>
+			<tr>
+				<td>Fournisseur</td>
+				<td>Utilisateur qui peut définir les conditions d'échange, d'utilisation et de stockage d'un bien, et choisir les utilisateurs d'un bien dans le cas d'un emprunt/stockage, ou les possesseurs d'un bien dans le cas d'un échange</td>
+			</tr>
+			<tr>
+				<td>Possesseur</td>
+				<td>Fournisseur qui enregistre et modifie ses biens et ses stocks sur la plateforme et choisit les autres possesseurs et fournisseurs d'un bien/stock</td>
+			</tr>
+			<tr>
+				<td>Planning</td>
+				<td>Permet de voir les disponibilités d'emprunt, d'échange et de stockage d'un bien. Et également de déterminer la durée d'utilisation de celui-ci</td>
+			</tr>
+			<tr>
+				<td><a href="https://fr.wikipedia.org/wiki/G%C3%A9olocalisation" target="_blank">Géolocalisation</a></td>
+				<td>Permet de voir à tout moment où se trouve un bien ou un stock</td>
+			</tr>
+			<tr>
+				<td><a href="https://qrcode.fr/" targer="_blank">QRCode</a></td>
+				<td>Permet d'identifier rapidement un bien ou un stock, afin de faciliter les échanges ou les emprunts</td>
+			</tr>
+			<tr>
+				<td>Stock</td>
+				<td>Lieu de stockage des biens, mis à disposition par les fournisseurs</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+<div class="section scrollspy" id="who" name="Qui sommes-nous ?">
+
+	<h2>
+		Qui sommes-nous ?
+	</h2>
+
+	<div class="parallax-container">
+		<div class="parallax">
+			<img src="{% static 'img/white-male-1871375_640.jpg' %}">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s2">
+			<img src="{% static 'img/apt-get-install-freedom.jpg' %}" class="circle responsive-img" />
+		</div>
+		<div class="col s10">
+			<div class="row">
+				<div class="col s12">
+					<h5><a target="_blank" href="https://github.com/b3j0f">b3j0f</a></h5>
+				</div>
+				<div class="col s12">
+					<p>
+						Développeur en informatique, passionné par le partage de resources et de connaissances.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}

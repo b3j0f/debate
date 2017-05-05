@@ -1,0 +1,67 @@
+- model: debate.category
+  fields:
+    name: computer science
+
+- model: debate.category
+  fields:
+    name: sociology
+
+- model: debate.category
+  fields:
+    name: culture
+
+- model: debate.category
+  fields:
+    name: sport
+
+- model: debate.category
+  fields:
+    name: politic
+
+- model: debate.category
+  fields:
+    name: religion
+
+- model: debate.category
+  fields:
+    name: psychology
+
+- model: debate.category
+  fields:
+    name: education
+
+- model: debate.category
+  fields:
+    name: economy
+
+- model: debate.category
+  fields:
+    name: mathematic
+
+- model: debate.category
+  fields:
+    name: chemical
+
+- model: debate.category
+  fields:
+    name: physic
+
+- model: debate.category
+  fields:
+    name: business
+
+- model: debate.category
+  fields:
+    name: phylosophy
+
+- model: debate.category
+  fields:
+    name: medical
+
+- model: debate.category
+  fields:
+    name: cooking
+
+- model: debate.category
+  fields:
+    name: circus

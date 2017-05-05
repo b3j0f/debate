@@ -1,0 +1,651 @@
+- model: debate.forbiddenemail
+  fields:
+    email: yopmail.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: trbvm.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: mailinator.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: sharklasers.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: getairmail.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: maildrop.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: maildrop.cc
+
+- model: debate.forbiddenemail
+  fields:
+    email: fakeInbox.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: fakeinbox.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: spamgourmet.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: mailnesia.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: mintemail.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: cd.mintemail.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: mailcatch.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: discard.email
+
+- model: debate.forbiddenemail
+  fields:
+    email: thraml.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: mytemp.email
+
+- model: debate.forbiddenemail
+  fields:
+    email: emailondeck.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: bsnow.net
+
+- model: debate.forbiddenemail
+  fields:
+    email: filzmail.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: mvrht.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: mytrashmail.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: dispostable.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: discard.email
+
+- model: debate.forbiddenemail
+  fields:
+    email: discardmail.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: discardmail.de
+
+- model: debate.forbiddenemail
+  fields:
+    email: spambog.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: spambog.de
+
+- model: debate.forbiddenemail
+  fields:
+    email: spambog.ru
+
+- model: debate.forbiddenemail
+  fields:
+    email: 0815.ru
+
+- model: debate.forbiddenemail
+  fields:
+    email: hulapla.de
+
+- model: debate.forbiddenemail
+  fields:
+    email: s0ny.net
+
+- model: debate.forbiddenemail
+  fields:
+    email: teewars.org
+
+- model: debate.forbiddenemail
+  fields:
+    email: yapped.net
+
+- model: debate.forbiddenemail
+  fields:
+    email: pfui.ru
+
+- model: debate.forbiddenemail
+  fields:
+    email: 0815.su
+
+- model: debate.forbiddenemail
+  fields:
+    email: sweetxxx.de
+
+- model: debate.forbiddenemail
+  fields:
+    email: jobbikszimpatizans.hu
+
+- model: debate.forbiddenemail
+  fields:
+    email: zaktouni.fr
+
+- model: debate.forbiddenemail
+  fields:
+    email: freelance-france
+
+- model: debate.forbiddenemail
+  fields:
+    email: webcontact-france
+
+- model: debate.forbiddenemail
+  fields:
+    email: fast-mail
+
+- model: debate.forbiddenemail
+  fields:
+    email: mail-easy
+
+- model: debate.forbiddenemail
+  fields:
+    email: instantmail.fr
+
+- model: debate.forbiddenemail
+  fields:
+    email: skrx.tk
+
+- model: debate.forbiddenemail
+  fields:
+    email: sraka.xyz
+
+- model: debate.forbiddenemail
+  fields:
+    email: servermaps.net
+
+- model: debate.forbiddenemail
+  fields:
+    email: lovesea.gq
+
+- model: debate.forbiddenemail
+  fields:
+    email: btcmail.pw
+
+- model: debate.forbiddenemail
+  fields:
+    email: knol-power
+
+- model: debate.forbiddenemail
+  fields:
+    email: everytg.ml
+
+- model: debate.forbiddenemail
+  fields:
+    email: freemeil.gq
+
+- model: debate.forbiddenemail
+  fields:
+    email: info-radio
+
+- model: debate.forbiddenemail
+  fields:
+    email: liveradio.tk
+
+- model: debate.forbiddenemail
+  fields:
+    email: resgedvgfed.tk
+
+- model: debate.forbiddenemail
+  fields:
+    email: susi.ml
+
+- model: debate.forbiddenemail
+  fields:
+    email: muehlacker.tk
+
+- model: debate.forbiddenemail
+  fields:
+    email: hartbot.de
+
+- model: debate.forbiddenemail
+  fields:
+    email: lovefall.ml
+
+- model: debate.forbiddenemail
+  fields:
+    email: keinpardon.de
+
+- model: debate.forbiddenemail
+  fields:
+    email: savelife.ml
+
+- model: debate.forbiddenemail
+  fields:
+    email: blutig.me
+
+- model: debate.forbiddenemail
+  fields:
+    email: u14269.ml
+
+- model: debate.forbiddenemail
+  fields:
+    email: freundin.ru
+
+- model: debate.forbiddenemail
+  fields:
+    email: breadtimes.press
+
+- model: debate.forbiddenemail
+  fields:
+    email: cyber-phone
+
+- model: debate.forbiddenemail
+  fields:
+    email: premium-mail
+
+- model: debate.forbiddenemail
+  fields:
+    email: disign-concept
+
+- model: debate.forbiddenemail
+  fields:
+    email: ecolo-online
+
+- model: debate.forbiddenemail
+  fields:
+    email: photo-impact
+
+- model: debate.forbiddenemail
+  fields:
+    email: web-ideal
+
+- model: debate.forbiddenemail
+  fields:
+    email: wazabi.club
+
+- model: debate.forbiddenemail
+  fields:
+    email: used-product
+
+- model: debate.forbiddenemail
+  fields:
+    email: cyber-innovation
+
+- model: debate.forbiddenemail
+  fields:
+    email: reality-concept
+
+- model: debate.forbiddenemail
+  fields:
+    email: last-chance
+
+- model: debate.forbiddenemail
+  fields:
+    email: disign-revelation
+
+- model: debate.forbiddenemail
+  fields:
+    email: art-en
+
+- model: debate.forbiddenemail
+  fields:
+    email: solar-impact
+
+- model: debate.forbiddenemail
+  fields:
+    email: smashmail.de
+
+- model: debate.forbiddenemail
+  fields:
+    email: social-mailer
+
+- model: debate.forbiddenemail
+  fields:
+    email: teamspeak3.ga
+
+- model: debate.forbiddenemail
+  fields:
+    email: gamno.config
+
+- model: debate.forbiddenemail
+  fields:
+    email: smap.4nmv
+
+- model: debate.forbiddenemail
+  fields:
+    email: spam.2012
+
+- model: debate.forbiddenemail
+  fields:
+    email: chechnya.conf
+
+- model: debate.forbiddenemail
+  fields:
+    email: phus8kajuspa.cu
+
+- model: debate.forbiddenemail
+  fields:
+    email: shitaway.cu
+
+- model: debate.forbiddenemail
+  fields:
+    email: yourlifesucks.cu
+
+- model: debate.forbiddenemail
+  fields:
+    email: shitaway.tk
+
+- model: debate.forbiddenemail
+  fields:
+    email: shitaway.cf
+
+- model: debate.forbiddenemail
+  fields:
+    email: shitaway.ml
+
+- model: debate.forbiddenemail
+  fields:
+    email: shitaway.ga
+
+- model: debate.forbiddenemail
+  fields:
+    email: shitaway.gq
+
+- model: debate.forbiddenemail
+  fields:
+    email: shitaway.igg
+
+- model: debate.forbiddenemail
+  fields:
+    email: shitaway.usa
+
+- model: debate.forbiddenemail
+  fields:
+    email: shitaway.nut
+
+- model: debate.forbiddenemail
+  fields:
+    email: shitaway.flu
+
+- model: debate.forbiddenemail
+  fields:
+    email: zhouemail.510520
+
+- model: debate.forbiddenemail
+  fields:
+    email: contrasto.cu
+
+- model: debate.forbiddenemail
+  fields:
+    email: shockinmytown.cu
+
+- model: debate.forbiddenemail
+  fields:
+    email: jet-renovation
+
+- model: debate.forbiddenemail
+  fields:
+    email: babau.usa
+
+- model: debate.forbiddenemail
+  fields:
+    email: babau.nut
+
+- model: debate.forbiddenemail
+  fields:
+    email: babau.igg
+
+- model: debate.forbiddenemail
+  fields:
+    email: babau.flu
+
+- model: debate.forbiddenemail
+  fields:
+    email: babau.ml
+
+- model: debate.forbiddenemail
+  fields:
+    email: babau.cf
+
+- model: debate.forbiddenemail
+  fields:
+    email: babau.ga
+
+- model: debate.forbiddenemail
+  fields:
+    email: babau.gq
+
+- model: debate.forbiddenemail
+  fields:
+    email: goooogle.igg
+
+- model: debate.forbiddenemail
+  fields:
+    email: goooogle.nut
+
+- model: debate.forbiddenemail
+  fields:
+    email: goooogle.flu
+
+- model: debate.forbiddenemail
+  fields:
+    email: goooogle.usa
+
+- model: debate.forbiddenemail
+  fields:
+    email: mrresourcepacks.tk
+
+- model: debate.forbiddenemail
+  fields:
+    email: this-is
+
+- model: debate.forbiddenemail
+  fields:
+    email: bongobongo.tk
+
+- model: debate.forbiddenemail
+  fields:
+    email: bongobongo.cf
+
+- model: debate.forbiddenemail
+  fields:
+    email: bongobongo.ml
+
+- model: debate.forbiddenemail
+  fields:
+    email: bongobongo.ga
+
+- model: debate.forbiddenemail
+  fields:
+    email: bongobongo.gq
+
+- model: debate.forbiddenemail
+  fields:
+    email: bongobongo.usa
+
+- model: debate.forbiddenemail
+  fields:
+    email: bongobongo.flu
+
+- model: debate.forbiddenemail
+  fields:
+    email: bongobongo.nut
+
+- model: debate.forbiddenemail
+  fields:
+    email: bongobongo.igg
+
+- model: debate.forbiddenemail
+  fields:
+    email: xy9ce.tk
+
+- model: debate.forbiddenemail
+  fields:
+    email: 8xyz8.dynu
+
+- model: debate.forbiddenemail
+  fields:
+    email: dfghj.ml
+
+- model: debate.forbiddenemail
+  fields:
+    email: kanker.website
+
+- model: debate.forbiddenemail
+  fields:
+    email: hoer.pw
+
+- model: debate.forbiddenemail
+  fields:
+    email: belastingdienst.pw
+
+- model: debate.forbiddenemail
+  fields:
+    email: takko345.wang
+
+- model: debate.forbiddenemail
+  fields:
+    email: sharklasers.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: guerrillamail.info
+
+- model: debate.forbiddenemail
+  fields:
+    email: grr.la
+
+- model: debate.forbiddenemail
+  fields:
+    email: guerrillamail.biz
+
+- model: debate.forbiddenemail
+  fields:
+    email: guerrillamail.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: guerrillamail.de
+
+- model: debate.forbiddenemail
+  fields:
+    email: guerrillamail.net
+
+- model: debate.forbiddenemail
+  fields:
+    email: guerrillamail.org
+
+- model: debate.forbiddenemail
+  fields:
+    email: guerrillamailblock.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: pokemail.net
+
+- model: debate.forbiddenemail
+  fields:
+    email: spam4.me
+
+- model: debate.forbiddenemail
+  fields:
+    email: armyspy.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: cuvox.de
+
+- model: debate.forbiddenemail
+  fields:
+    email: dayrep.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: einrot.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: fleckens.hu
+
+- model: debate.forbiddenemail
+  fields:
+    email: gustr.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: jourrapide.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: rhyta.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: superrito.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: teleworm.us
+
+- model: debate.forbiddenemail
+  fields:
+    email: mt2016.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: thankyou2016.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: trash2016.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: trashymail.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: mytrashmail.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: hmamail.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: throwam.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: siliwangi.ga
+
+- model: debate.forbiddenemail
+  fields:
+    email: jr9fds46y97.com
+
+- model: debate.forbiddenemail
+  fields:
+    email: cartelera.org

@@ -1,0 +1,15 @@
+- model: auth.user
+  fields:
+    id: 1
+    username: admin@debate.com
+    email: admin@debate.com
+    password: pbkdf2_sha256$24000$J7xfx5yd0BD2$DVgAImTJY+oDJAKOH2FVsElA+2mqY6Aru+Cbqo0hUlM=
+    first_name: Administrator
+    last_name: debate
+    is_superuser: true
+    is_staff: true
+    is_active: true
+
+- model: debate.Account
+  fields:
+    user: 1

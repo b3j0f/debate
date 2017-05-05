@@ -1,0 +1,5 @@
+-r base.txt
+pyparsing
+pydot
+pygraphviz
+django-extensions

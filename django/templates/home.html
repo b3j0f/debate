@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="section title white">
+	<div class="center">
+		<h1 class="header">
+			Échangez, utilisez et stockez des biens ou des services*
+		</h1>
+		<span>* : seul ou à plusieurs</span>
+		<h5 class="subheader">Actuellement {{ productcount }} biens et {{ servicecount }} services disponibles !</h5>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col s12 m4">
+		<div class="card hoverable">
+			<div class="card-image waves-effect waves-block waves-light">
+				<a href="/gives">
+					<img class="responsive-img purple" src="{% static 'img/home-delivery-service.svg' %}" />
+					<div class="card-title">
+						Biens
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="col s12 m4">
+		<div class="card hoverable">
+			<div class="card-image waves-effect waves-block waves-light">
+				<a href="/stocks">
+					<img class="responsive-img blue" src="{% static 'img/shelves-with-boxes.svg' %}" />
+					<div class="card-title">
+						Stocks
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="col s12 m4">
+		<div class="card hoverable">
+			<div class="card-image waves-effect waves-block waves-light">
+				<a href="/shares">
+					<img class="responsive-img teal" src="{% static 'img/race-chronometer.svg' %}" />
+					<div class="card-title">
+						Services
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8" async defer>
+	var options = [
+	{
+		selector: '#problems', offset: 100,
+		callback: function(elt) {
+			Materialize.showStaggeredList($(elt));
+		}
+	},
+	{
+		selector: '#then', offset: 100,
+		callback: function(elt) {
+			Materialize.fadeInImage($(elt));
+		}
+	},
+	{
+		selector: '#solution1', offset: 100,
+		callback: function(elt) {
+			Materialize.showStaggeredList($(elt));
+		}
+	},
+	{
+		selector: '#solution2', offset: 100,
+		callback: function(elt) {
+			Materialize.showStaggeredList($(elt));
+		}
+	}
+	];
+	Materialize.scrollFire(options);
+</script>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+
+<div class="input-field">
+	<select id="category" type="text">
+		{% for category in categories %}
+		<optgroup label="{{ parentcategory.name }}">
+			{% for childcategory in category.categories %}
+			<option value="{{ childcategory.id }}">{{ childcategory.name }}</option>
+			{% endfor %}
+		</optgroup>
+		{% endfor %}
+	</select>
+	<label for="category">Catégorie</label>
+</div>

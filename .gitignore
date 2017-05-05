@@ -87,3 +87,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+django/app/settings/local.py
+db.sqlite3
+www

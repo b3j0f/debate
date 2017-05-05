@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="section scrollspy" id="search" name="Recherche">
+
+	<h1>
+		{% if page == 'give' %}Don, troc ou vente{% elif page == 'share' %}Emprunt ou location{% else %}Stockage{% endif %}
+	</h1>
+
+	<form action="/search" method="post" accept-charset="utf-8">
+		<div class="card row">
+			<div class="col s12 center">
+				<nav>
+					Catégorie
+					<a class="breadcrumb dropdown-button" id="topcategory" href="#" data-activates="topcategories" data-beloworigin="true" data-hover="true" name="topcategory">Tout</a>
+					<ul name="topcategories" id="topcategories" class="dropdown-content">
+					</ul>
+					<a class="breadcrumb dropdown-button" id="midcategory" href="#" data-activates="midcategories" data-hover="true">Tout</a>
+					<ul name="midcategories" id="midcategories" class="dropdown-content">
+					</ul>
+					<a class="breadcrumb dropdown-button" id="lowcategory" href="#" data-activates="lowcategories" data-hover="true">Tout</a>
+					<ul name="lowcategories" id="lowcategories" class="dropdown-content">
+					</ul>
+				</nav>
+			</div>
+			<div class="col l6 s12 input-field">
+				<div class="row">
+					<div class="col s12 input-field">
+						<input type="text" name="keywords" id="keywords" placeholder="appareil photo nikon 87XZ" />
+						<label for="keywords">Quoi ?</label>
+					</div>
+				</div>
+				<div class="col s8 input-field">
+					<input type="text" name="where" id="where" placeholder="17 rue d'arras, Lille" />
+					<label for="where">Où ?</label>
+				</div>
+				<div class="col s3 input-field">
+					<input type="number" name="perimeter" min="1" id="perimeter" value="5" />
+					<label for="perimeter">Périmètre (km)</label>
+				</div>
+				<div class="col s6 input-field">
+					<input type="date" class="datepicker" id="when" name="when" />
+					<label for="when">Quand ?</label>
+				</div>
+				<div class="col s6">
+					<a class="btn btn-block" name="periods" id="periods">Périodes
+					</a>
+				</div>
+			</div>
+			<div class="col l6 s12">
+				<div id="map" class="map"></div>
+			</div>
+			<div class="col s12 center">
+				<ul class="collapsible" data-collapsible="accordion">
+					<li id="name">
+						<div class="collapsible-header center">
+							<i class="material-icons left">settings</i>
+							Affiner la recherche
+						</div>
+						<div class="collapsible-body">
+							<div class="row">
+								<div class="col s12 m6 properties">
+									<h5>Propriétés</h5>
+									<div class="row">
+										{% for property in properties.all %}
+										<div class="col l6 m12">
+											<div id="{{ property.id }}" name="{{ property.name }}" class="property {{ property.id }}{% for category in property.categories.all %} {{ category.name }}{% endfor %}" />
+										</div>
+										{% endfor %}
+									</div>
+								</div>
+								<div class="col s12 m6 conditions">
+									<h5>Conditions</h5>
+									{% for condition in conditions.all %}
+									<div class="col l6 m12">
+										<div id="{{ condition.id }}" name="{{ condition.name }}" class="condition {{ condition.id }}{% for category in condition.categories.all %} {{ category.name }}{% endfor %}" />
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div class="section scrollspy" id="result" name="résultats">
+	<h1>Résultats</h1>
+	{% include 'pagination.html' with pages=pages %}
+	<div id="results" class="row">
+		{% for common in commons %}
+		<div class="l4 m6 s12">
+			{% include 'common.html' with common=common %}
+		</div>
+		{% endfor %}
+	</div>
+	{% include 'pagination.html' with pages=pages page=page %}
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	{% include 'search.js' %}
+</script>
+
+{% endblock %}

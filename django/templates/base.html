@@ -1,0 +1,321 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    {% block header %}
+
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}" />
+
+    <!--Import Google Icon Font-->
+    <!--link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /-->
+    <link href="{% static 'css/icon.css' %}" rel="stylesheet" />
+
+    <!-- Compiled and minified CSS -->
+    <!--link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" media="screen,projection" /-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.css' %}" media="screen,projection" />
+
+    <!-- c3 -->
+    <!--link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css' %}/c3.{% if not DEBUG %}min.{% endif %}css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+    <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.0/ol.css" /-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ol.css' %}" />
+
+    <!--script src="https://apis.google.com/js/platform.js"></script-->
+    <script src="{% static 'js/platform.js' %}"></script>
+
+    <!--script src="https://www.google.com/recaptcha/api.js"></script-->
+
+    <!--script src="https://buttons.github.io/buttons.js"></script-->
+    <!--script src="{% static 'js/buttons.js' %}"></script-->
+
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.0/ol.js"></script-->
+    <script src="{% static 'js/ol.js' %}"></script>
+
+    <!-- nouislider -->
+    <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.2.0/nouislider.min.css" /-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css' %}/nouislider.{% if not DEBUG %}min.{% endif %}css" />
+
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.2.0/nouislider.min.js"></script-->
+    <script src="{% static 'js' %}/nouislider.{% if not DEBUG %}min.{% endif %}js"></script>
+
+    <!-- Let browser know website is optimized for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Import jQuery before materialize.js -->
+    <!--script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script-->
+    <script type="text/javascript" src="{% static 'js' %}/jquery-2.1.1.{% if not DEBUG %}min.{% endif %}js"></script>
+    <script src="https://cdn.ravenjs.com/3.14.2/raven.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        Raven.config('https://f2e15a14e17447408083fa53c82d7eb5@sentry.io/165355').install()
+    </script>
+    <!-- Compiled and minified JavaScript -->
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script-->
+    <script src="{% static 'js' %}/materialize.{% if not DEBUG %}min.{% endif %}js"></script>
+    <!-- d3 -->
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script-->
+    <script type="text/javascript" src="{% static 'js' %}/d3.{% if not DEBUG %}min.{% endif %}js"></script>
+    <!-- c3 -->
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script-->
+    <script type="text/javascript" src="{% static 'js' %}/c3.{% if not DEBUG %}min.{% endif %}js"></script>
+
+    <!-- dropify -->
+    <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/css/dropify.min.css" /-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css' %}/dropify.{% if not DEBUG %}min.{% endif %}css" />
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/js/dropify.min.js" ></script-->
+    <script type="text/javascript" src="{% static 'js' %}/dropify.{% if not DEBUG %}min.{% endif %}js" ></script>
+    <!--link rel="stylesheet" type="text/eot" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.eot" /-->
+    <link rel="stylesheet" type="text/eot" href="{% static 'fonts/dropify.eot' %}" />
+    <!--link rel="stylesheet" type="image/svg" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.svg" /-->
+    <link rel="stylesheet" type="image/svg" href="{% static 'img/dropify.svg' %}" />
+    <!--link rel="stylesheet" type="application/font-sfnt" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.ttf" /-->
+    <link rel="stylesheet" type="application/font-sfnt" href="{% static 'fonts/dropify.ttf' %}" />
+    <!--link rel="stylesheet" type="application/font-woff" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.woff" /-->
+    <link rel="stylesheet" type="application/font-woff" href="{% static 'fonts/dropify.woff' %}" />
+
+    <!-- fullcalendar -->
+    <script type="text/javascript" src="{% static 'js' %}/moment.min.js"></script>
+    <script type="text/javascript" src="{% static 'js' %}/fullcalendar.{% if not DEBUG %}min.{% endif %}js"></script>
+    <script type="text/javascript" src="{% static 'js' %}/gcal.{% if not DEBUG %}min.{% endif %}js"></script>
+    <script type="text/javascript" src="{% static 'js/locale-all.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css' %}/fullcalendar.{% if not DEBUG %}min.{% endif %}css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css' %}/fullcalendar.print.{% if not DEBUG %}min.{% endif %}css" />
+
+    <!-- qrcode -->
+    <script type="text/javascript" src="{% static 'js' %}/qrcode.{% if not DEBUG %}min.{% endif %}js"></script>
+
+    {% endblock %}
+
+    <div id="fb-root"></div>
+
+</head>
+
+<body>
+    {% block body %}
+
+    {% block navbar %}
+
+    <ul id="usermenu" class="dropdown-content">
+        <li><a href="/account" {% if page == 'account' %}class="active"{% endif %}>Mon compte</a></li>
+        <li class="divider"></li>
+        <li><a href="/owns" {% if page == 'owns' %}class="active"{% endif %}>Mes produits</a></li>
+        <li><a href="/supplyings" {% if page == 'supplyings' %}class="active"{% endif %}>Mes offres</a></li>
+        <li><a href="/stocks" {% if page == 'stocks' %}class="active"{% endif %}>Mes stocks</a></li>
+        <li><a href="/requests" {% if page == 'requests' %}class="active"{% endif %}>Mes requêtes</a></li>
+        <li><a href="/proposals" {% if page == 'proposals' %}class="active"{% endif %}>Mes propositions</a></li>
+        <li><a href="/services" {% if page == 'services' %}class="active"{% endif %}>Mes services</a></li>
+        <li><a href="/logout?next={{ next }}">déconnexion</a></li>
+    </ul>
+
+    <ul class="side-nav" id="mobile-menu">
+        {% if user.is_authenticated %}
+        <li class="{% if page == 'account' %}active{% endif %}"><a class="waves-effect waves-light" href="/account">{{ user.email }}</a></li>
+        <li><a class="waves-effect waves-light btn" href="/logout?next={{ next }}">Déconnexion</a></li>
+        {% else %}
+        <li><a class="waves-effect waves-light btn" href="/login?next={{ next }}">Connexion</a></li>
+        {% endif %}
+        <li class="divider"></li>
+        <li class="{% if page == 'changes' %}active{% endif %}"><a href="/changes" class="waves-effect">Échanges</a></li>
+        <li class="{% if page == 'stocks' %}active{% endif %}"><a href="/stocks" class="waves-effect">Stocks</a></li>
+        <li class="{% if page == 'services' %}active{% endif %}"><a href="/services" class="waves-effect">Services</a></li>
+    </ul>
+
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo{% if page == 'home' %} active{% endif %}">
+                    Co Use It
+                </a>
+                <ul id="nav-lechangement" class="right hide-on-med-and-down">
+                    <li class="{% if page == 'changes' %}active{% endif %}"><a href="/changes">Échanges</a></li>
+                    <li class="{% if page == 'stocks' %}active{% endif %}"><a href="/stocks">Stocks</a></li>
+                    <li class="{% if page == 'services' %}active{% endif %}"><a href="/services">Services</a></li>
+                    {% if user.is_authenticated %}
+                    <!-- Dropdown Trigger -->
+                    <li class="{% if page == 'account' %}active{% endif %}"><a class="dropdown-button" href="#!" data-activates="usermenu">{{ user.email }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                    {% else %}
+                    <li><a class="waves-effect waves-light btn" href="/login?next={{ next }}">Connexion</a></li>
+                    {% endif %}
+                </ul>
+                <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+    </div>
+
+    {% endblock %}
+
+    {% if errors %}
+
+    {% for error in errors %}
+
+    <script type="text/javascript">
+        var $toastContent = $('<p class="red-text">{{ error }}</p>');
+        Materialize.toast($toastContent, 5000, 'rounded');
+    </script>
+
+    {% endfor %}
+
+    {% endif %}
+
+    {% if successes %}
+
+    {% for success in successes %}
+
+    <script type="text/javascript">
+        var $toastContent = $('<p class="green-text">{{ success }}</p>');
+        Materialize.toast($toastContent, 5000, 'rounded');
+    </script>
+
+    {% endfor %}
+
+    {% endif %}
+
+    <div class="container loader">
+
+        {% if tableofcontents %}
+        <div class="row">
+            <div class="col l11 m10 s12">
+                {% endif %}
+
+                {% block content %}
+                {% endblock %}
+
+                {% if tableofcontents %}
+            </div>
+            {% endif %}
+
+            {% if tableofcontents %}
+
+            {% block rightmenu %}
+            <div class="col l1 m2 hide-on-small-only">
+                <div class="rightmenu">
+                    <ul>
+                        {% if page != 'edit' %}
+                        <li>
+                            <a href="/edit?type={{ page }}" class="btn-floating btn-large red pulse">
+                                <i class="material-icons">add</i>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <script src="https://liberapay.com/lechangement/widgets/receiving.js"></script>
+                    <ul class="section table-of-contents">
+                        {% block tableofcontents %}
+                        {% endblock %}
+                    </ul>
+                    {% block action %}
+                    {% endblock %}
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+
+        <script type="text/javascript">
+            var tableofcontents = $('.table-of-contents')[0];
+            var scrollspies = $('.scrollspy');
+            for (var i = 0; i < scrollspies.length; i++) {
+                var scrollspy = scrollspies[i];
+                var scrollspyChild = document.createElement('li');
+                var scrollspylink = document.createElement('a');
+                scrollspyChild.appendChild(scrollspylink);
+                var scrollspytxt = document.createTextNode(scrollspy.getAttribute('name'));
+                scrollspylink.setAttribute('href', '#'+scrollspy.id);
+                scrollspylink.appendChild(scrollspytxt);
+                tableofcontents.appendChild(scrollspyChild);
+            }
+        </script>
+
+        {% endif %}
+
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+        {% block script %}
+        {% endblock %}
+    </script>
+
+    <script src="{% static 'js/app.js' %}" type="text/javascript" charset="utf-8"></script>
+
+    {% endblock %}
+
+</body>
+
+<footer class="page-footer white-text">
+    {% block footer %}
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                Nous soutenir
+                <script src="https://liberapay.com/lechangement/widgets/receiving.js"></script>
+                <form name="newsletter" id="newsletter" action="/newsletter" method="post">
+                    <div class="input-field col s8">
+                        <i class="material-icons prefix">email</i>
+                        <input id="email" type="email" class="validate" name="email" />
+                        <label for="email" class="white-text">Newsletter</label>
+                    </div>
+                    <div class="col s2">
+                        <input type="submit" class="btn waves-effect waves-light hide-on-small-only" value="Me tenir informé" />
+                    </div>
+                </form>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Liens</h5>
+                <ul>
+                    <li>
+                        <a href="/stats">Statistiques</a>
+                    </li>
+                    <li>
+                        <a href="/about">À propos</a>
+                    </li>
+                    <li>
+                        <a href="/faq">FAQ</a>
+                    </li>
+                    <li>
+                        <!-- Place this tag where you want the button to render. -->
+                        <a class="github-button" href="https://github.com/b3j0f/lechangement/subscription" data-style="mega" data-count-href="/b3j0f/lechangement/watchers" data-count-api="/repos/b3j0f/lechangement#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch b3j0f/lechangement on GitHub">Sources</a>
+                    </li>
+                    <li>
+                        <a class="twitter-follow-button"
+                        href="https://twitter.com/lechangement007"></a>
+                    </li>
+                    <li>
+                        <g:follow href="https://plus.google.com/communities/114161877128649492848"></g:follow>
+                    </li>
+                    <li>
+                        Photos : <a href="https://pixabay.com/" target="_blank">https://pixabay.com/</a>
+                    </li>
+                    <li>
+                        Icônes <a href="http://www.flaticon.com/" target="_blank">http://www.flaticon.com/</a>
+                    </li>
+                    <li>
+                        Logo : <a href="https://logomakr.com" target="_blank">https://logomakr.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="row container">
+            <div class="col s12 m2 l4">
+                <p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+                  <a target="_blank" rel="license"
+                  href="http://creativecommons.org/publicdomain/zero/1.0/">
+                  <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+              </a>
+          </div>
+          <div class="col m10 l8 hide-on-small-only">
+            <p>
+                Ce site appartient au domaine public : <a target="_blank" rel="license"
+                href="http://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</footer>
+
+</html>
