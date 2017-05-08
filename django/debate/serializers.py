@@ -40,8 +40,7 @@ class DebateSerializer(HyperlinkedModelSerializer):
 
         model = Debate
         fields = [
-            'contact', 'name', 'description', 'public', 'state', 'score',
-            'medias', 'mduration'
+            'contact', 'name', 'description', 'public', 'score', 'medias'
         ]
 
 

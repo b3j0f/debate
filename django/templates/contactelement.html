@@ -1,0 +1,22 @@
+<div class="card">
+	<div class="card-image">
+		<img class="activator" src="{{ elt.home }}">
+		<span class="card-title">{{ elt.name }}</span>
+		<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+	</div>
+	<div class="card-content">
+		<p class="truncate">{{ elt.descrition }}</p>
+	</div>
+	<div class="card-action">
+		<div class="row">
+			<div class="col s6">
+				Score : {{ elt.score }}
+			</div>
+			<div class="col s6">
+				{% include 'vote.html' with elt=elt %}
+			</div>
+		</div>
+	</div>
+	<div class="card-reveal">
+	</div>
+</div>

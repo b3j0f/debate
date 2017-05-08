@@ -50,11 +50,9 @@ class DebateViewSet(ModelViewSet):
         'contact': ['exact'],
         'name': ['exact', 'icontains'],
         'public': ['exact'],
-        'state': ['exact'],
         'score': ['lte', 'gte', 'exact'],
         'description': ['icontains'],
-        'medias': ['exact'],
-        'mduration': ['exact', 'lte', 'gte']
+        'medias': ['exact']
     }
     permission_classes = (IsContactOrReadOnly,)
 

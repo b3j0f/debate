@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
-import raven
+# import raven
 
 from .local import (
     HOST,
@@ -67,10 +67,13 @@ INSTALLED_APPS = [
 ]
 
 RAVEN_CONFIG = {
-    'dsn': 'https://f2e15a14e17447408083fa53c82d7eb5:e4af6f9ccada4c1fb53e449a7dbb8878@sentry.io/165355',
+    'dsn': 'https://{0}@sentry.io/{1}'.format(
+        'f2e15a14e17447408083fa53c82d7eb5:e4af6f9ccada4c1fb53e449a7dbb8878',
+        '165355'
+    ),
     # If you are using git, you can also automatically configure the
     # release based on the git info.
-    'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+    # 'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
 }
 
 SITE_ID = 1

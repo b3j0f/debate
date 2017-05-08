@@ -33,40 +33,41 @@ class Media(models.Model):
     url = models.CharField(max_length=255)
 
 
-class Debate(models.Model):
-    """Debate model."""
-
-    contact = models.ForeignKey(Account, blank=True, related_name='debates')
-    name = models.CharField(max_length=50, blank=True)
-    description = models.CharField(max_length=255, blank=True)
-    public = models.BooleanField(default=True, blank=True)
-    state = models.CharField(choices=[
-        ['p', 'pending'],
-        ('a', 'accepted'),
-        ('r', 'refused')
-    ], default='p', max_length=1, blank=True)
-    medias = models.ManyToManyField(
-        Media, default=[], blank=True, related_name='+'
-    )
-    mduration = models.IntegerField(default=60, blank=True)
+class VotedElement(models.Model):
+    """Voted element model."""
 
     @property
     def score(self):
         """Score."""
         return sum(v.value for v in self.votes.all()) / self.votes.count()
 
+    @property
+    def type(self):
+        """Get type name."""
+        return self.__class__.__name__
 
-class Organization(models.Model):
-    """Organization model."""
+
+class ContactElement(VotedElement):
+    """Contact element model."""
 
     name = models.CharField(max_length=50, blank=True)
     description = models.CharField(max_length=255, blank=True)
+    public = models.BooleanField(default=True, blank=True)
     medias = models.ManyToManyField(
         Media, default=[], blank=True, related_name='+'
     )
-    organizers = models.ManyToManyField(
-        Account, default=[], blank=True, related_name='organizations'
+    contacts = models.ManyToManyField(
+        Account, related_name='debates', blank=True
     )
+
+
+class Debate(ContactElement):
+    """Debate model."""
+
+
+class Organization(ContactElement):
+    """Organization model."""
+
     address = AddressField(blank=True)
     lon = models.FloatField(blank=True)
     lat = models.FloatField(blank=True)
@@ -80,7 +81,7 @@ class Organization(models.Model):
         )
 
 
-class Scheduling(models.Model):
+class Scheduling(VotedElement):
     """Scheduling model."""
 
     date = models.DateField(blank=True)
@@ -95,21 +96,26 @@ class Vote(models.Model):
     """Vote model."""
 
     account = models.ForeignKey(Account, blank=True, related_name='votes')
-    debate = models.ForeignKey(Debate, blank=True, related_name='votes')
+    votedelement = models.ForeignKey(
+        VotedElement, blank=True, related_name='votes'
+    )
     value = models.IntegerField()
 
     class Meta:
         """Vote meta class."""
 
-        unique_together = ('account', 'debate')
+        unique_together = ('account', 'votedelement')
 
 
 class Category(models.Model):
     """Category model."""
 
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, primary_key=True)
     description = models.CharField(max_length=255)
-    debates = models.ManyToManyField(Debate, blank=True)
+    debates = models.ManyToManyField(Debate, blank=True, default=[])
+    organizations = models.ManyToManyField(
+        Organization, blank=True, default=[]
+    )
 
 
 @python_2_unicode_compatible

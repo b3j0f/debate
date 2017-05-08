@@ -5,57 +5,50 @@
 {% block content %}
 
 <h2>
-	{% if common %}Modification{% else %}Ajout{% endif %} de <a class="dropdown-button btn-flat" data-constrainWidth="false" data-activates="types" data-hover="true" id="type"></a>
+	{% if elt %}Modification{% else %}Ajout{% endif %} de <a class="dropdown-button btn-flat" data-constrainWidth="false" data-activates="types" data-hover="true" id="type"></a>
 
 	<ul id='types' class='dropdown-content'>
 	</ul>
-
 </h2>
 
 <div id="edit">
 	<form method="post" enctype="multipart/form-data" action="{{ url }}">
 		{% csrf_token %}
-		<input type="hidden" name="id" value="{{ common.id }}" />
+		<input type="hidden" name="id" value="{{ elt.id }}" />
 		<input type="hidden" name="type" />
-		<input type="hidden" name="owners" />
+		<input type="hidden" name="contacts" />
+		<input type="hidden" name="lon" value="{{ elt.lon }}" />
+		<input type="hidden" name="lat" value="{{ elt.lat }}" />
+
 		<div class="row">
 			<div class="col l12">
 				<div class="row card-panel">
 
-					<div class="col s12 center" id="categories">
-					</div>
-
 					<div class="col s8 l9 input-field">
 						<i class="material-icons prefix">title</i>
-						<input type="text" name="name" id="name" onchange="updateProperty('name')" value="{{ common.id }}" class="maxlength" data-length="50" />
+						<input type="text" name="name" id="name" onchange="updateProperty('name')" value="{{ elt.id }}" class="maxlength" data-length="50" />
 						<label for="name">Nom</label>
 					</div>
 
 					<div class="col s4 l3 input-field">
-						<input type="checkbox" id="pro" name="pro" {% if common.professional %}checked="true"{% endif %}/>
-      					<label for="pro">Professionnel</label>
-					</div>
-
-					<div class="col s12 input-field">
-						<div class="chips" id="owners"></div>
-						<label for="owners">Propriétaires</label>
-					</div>
-
-					<div class="input-field col s6 m2 l1">
-						<input id="amount" type="number" min="1" value="{% if common.amount %}{{ common.amount }}{% else %}1{% endif %}" name="amount" />
-						<label for="amount">Quantité</label>
-					</div>
-
-					<div class="col s12 input-field">
-						<i class="material-icons left">subtitles</i>
-						<input type="text" name="shortdescription" placeholder="10 millions de pixels, carte mémoire 2 Go" id="shortdescription" onchange="updateProperty('shortdescription')" value="{{ common.shortdescription }}" data-length="120" class="maxlength" />
-						<label for="shortdescription">Description courte</label>
+						<input type="checkbox" id="public" name="public" {% if elt.public %}checked="true"{% endif %}/>
+      					<label for="public">Public</label>
 					</div>
 
 					<div class="col s12 input-field">
 						<i class="material-icons left">description</i>
-						<textarea id="description" name="description" class="materialize-textarea maxlength" onchange="updateProperty('description')" data-length="255">{{ common.description }}</textarea>
+						<textarea id="description" name="description" class="materialize-textarea maxlength" onchange="updateProperty('description')" data-length="255">{{ elt.description }}</textarea>
 						<label for="description">Description</label>
+					</div>
+
+					<div class="col s12 input-field">
+						<div class="chips" id="categories"></div>
+						<label class="debate" for="categories">Catégories</label>
+					</div>
+
+					<div class="col s12 input-field">
+						<div class="chips" id="contacts"></div>
+						<label for="contacts">Contacts</label>
 					</div>
 
 					<div class="col s12" id="medias">
@@ -67,76 +60,7 @@
 						</div>
 					</div>
 
-					<div class="col s12 input-field">
-						Nombre d'acquéreurs/utilisateurs par défaut :
-						<input type="number" name="min" placeholder="1" value="1" />
-						<label>min</label>
-						<input type="number" name="max" placeholder="infinity" />
-						<label>max</label>
-					</div>
-
-					<div class="service col s12 input-field">
-						Durée par défaut :
-						<input type="number" name="minduration" placeholder="1" value="1" id="minduration" />
-						<label for="minduration">Minimum</label>
-						<input type="number" name="maxduration" placeholder="1" value="1" id="maxduration" />
-						<label for="maxduration">Maximum</label>
-					</div>
-
-					<div class="col s12 section stock" id="conditions">
-						<ul class="collapsible stock" data-collapsible="expandable">
-							<li id="capacities" class="stock">
-								<div class="collapsible-header">
-									<i class="material-icons">move_to_inbox</i>
-									Capacités
-								</div>
-								<div class="collapsible-body">
-									<ul class="collection">
-										<li class="collection-item">
-										</li>
-									</ul>
-								</div>
-							</li>
-						</ul>
-						<ul class="collapsible common stock" data-collapsible="expandable">
-							<li id="gives">
-								<div class="collapsible-header">
-									<i class="material-icons">trending_flat</i>
-									<div id="givecount">0</div>
-									conditions d'acquisition
-								</div>
-								<div class="collapsible-body">
-									<ul class="collection">
-										<li class="collection-item">
-										</li>
-									</ul>
-								</div>
-								<a class="btn-block waves-effect waves-light" onclick="newSupply('give');">
-									<i class="material-icons">add</i>
-								</a>
-							</li>
-						</ul>
-						<ul class="collapsible common stock service" data-collapsible="expandable">
-							<li id="shares">
-								<div class="collapsible-header">
-									<i class="material-icons">trending_flat</i>
-									<div id="sharecount">0</div>
-									Conditions d'utilisation
-								</div>
-								<div class="collapsible-body">
-									<ul class="collection">
-										<li class="collection-item">
-										</li>
-									</ul>
-								</div>
-								<a class="btn-block waves-effect waves-light" onclick="newSupply('share');">
-									<i class="material-icons">add</i>
-								</a>
-							</li>
-						</ul>
-					</div>
-
-					<div class="col s12 input-field section">
+					<div class="col s12 organization input-field section">
 						<h5>
 							<i class="material-icons left">location_on</i>
 							Adresse
@@ -171,6 +95,7 @@
 							</li>
 						</ul>
 					</div>
+
 					<div class="col s12">
 						<a class="btn-block waves-effect waves-light update" href="demo">Modifier</a>
 						<a class="btn-block waves-effect waves-light add" href="demo">Ajouter</a>
@@ -181,7 +106,7 @@
 		<div class="modal" id="demo">
 			<div class="modal-content">
 				<div class="row">
-					{% include 'common.html' %}
+					{% include 'elt.html' %}
 				</div>
 			</div>
 			<div class="modal-footer">

@@ -3,13 +3,12 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
-from django.db.models import F, Sum
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 
 from debate.models import (
-    Account, Debate, Organization, Vote, Category
+    Account, Debate, Organization, Vote, Category, Stat, Scheduling
 )
 
 from .utils import sendemail
@@ -37,7 +36,7 @@ def basecontext(request, page='home', tableofcontents=False):
 
     :rtype: dict
     """
-    orgcount = Organization.objects.count()
+    organizationcount = Organization.objects.count()
     debatecount = Debate.objects.count()
     accountcount = Account.objects.count()
     votecount = Vote.objects.count()
@@ -45,7 +44,7 @@ def basecontext(request, page='home', tableofcontents=False):
     categories = list(Category.objects.all())
 
     result = {
-        'orgcount': orgcount, 'debatecount': debatecount,
+        'organizationcount': organizationcount, 'debatecount': debatecount,
         'votecount': votecount, 'accountcount': accountcount,
         'categories': categories,
         'page': page,
@@ -225,7 +224,7 @@ def appcontext(request, page='home', tableofcontents=False):
 
 def organizationsview(request):
     """View of organizations."""
-    context = appcontext(request, page='organisations', tableofcontents=True)
+    context = appcontext(request, page='organizations', tableofcontents=True)
     context['fcategories'] = request.GET.get('fcategories')
 
     return render(request, 'search.html', context=context)
@@ -234,6 +233,13 @@ def organizationsview(request):
 def debatesview(request):
     """View of debates."""
     context = appcontext(request, page='debates', tableofcontents=True)
+    context['fcategories'] = request.GET.get('fcategories')
+    return render(request, 'search.html', context=context)
+
+
+def votesview(request):
+    """View of votes."""
+    context = appcontext(request, page='votes', tableofcontents=True)
     context['fcategories'] = request.GET.get('fcategories')
     return render(request, 'search.html', context=context)
 
@@ -286,10 +292,33 @@ def statsview(request):
     """Stat view."""
     context = basecontext(request, 'stats', True)
     context['stats'] = Stat.objects.all()
-    context['ownercount'] = Account.objects.filter(ownes=None).count()
-    context['suppliercount'] = Account.objects.filter(supplies=None).count()
+    context['schedulingcount'] = Scheduling.objects.count()
     context['usercount'] = Account.objects.filter(uses=None).count()
-    context['duration'] = Using.objects.all().aggregate(
-        duration=Sum(F('endts') - F('startts'))
-    )['duration']
+    return render(request, 'stats.html', context=context)
+
+
+def mydebatesview(request):
+    """My debates view."""
+    context = appcontext(request, 'mydebates')
+    return render(request, 'mysearch.html', context=context)
+
+
+def myvotesview(request):
+    """My votes view."""
+    context = appcontext(request, 'myvotes')
+    return render(request, 'mysearch.html', context=context)
+
+
+def myorganizationsview(request):
+    """My organizations view."""
+    context = appcontext(request, 'myorganizations')
+    return render(request, 'mysearch.html', context=context)
+
+
+def mystatsview(request):
+    """Stat view."""
+    context = basecontext(request, 'stats', True)
+    context['stats'] = Stat.objects.all()
+    context['schedulingcount'] = Scheduling.objects.count()
+    context['usercount'] = Account.objects.filter(uses=None).count()
     return render(request, 'stats.html', context=context)

@@ -26,7 +26,8 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     homeview, aboutview, loginview, logoutview, resetpwdview, editview,
     accountview, accountsview, organizationsview, faqview, debatesview,
-    searchview, statsview
+    searchview, statsview, votesview, mydebatesview, myorganizationsview,
+    myvotesview, mystatsview
 )
 
 from debate.views import (
@@ -65,7 +66,12 @@ urlpatterns = [
     url(r'^account', accountview),
     url(r'^organizations', organizationsview),
     url(r'^debates', debatesview),
+    url(r'^votes', votesview),
     url(r'^stats', statsview),
+    url(r'^myorganizations', myorganizationsview),
+    url(r'^mydebates', mydebatesview),
+    url(r'^myvotes', myvotesview),
+    url(r'^mystats', mystatsview),
     url(r'^edit', editview),
     url(r'^search', searchview),
     url('test', lambda request: render(request, 'test.html'))

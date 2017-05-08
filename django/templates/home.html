@@ -7,45 +7,53 @@
 <div class="section title white">
 	<div class="center">
 		<h1 class="header">
-			Échangez, utilisez et stockez des biens ou des services*
+			Platforme de conférences participatives
 		</h1>
-		<span>* : seul ou à plusieurs</span>
-		<h5 class="subheader">Actuellement {{ productcount }} biens et {{ servicecount }} services disponibles !</h5>
+		<h5 class="subheader">Actuellement {{ debatecount }} débats et {{ organizationcount }} organisations ont été créés !</h5>
 	</div>
 </div>
 
+<div class="divider"></div>
+
+<div class="section center">
+	<p>Cette plateforme facilite la mise en oeuvre et le partage de connaissance de conférences participatives en permettant :</p>
+	<ol>
+		<li>Tout utilisateur peut proposer un sujet de conférence ou voter pour des sujets déjà proposés</li>
+		<li>Tout utilisateur peut créer une organisation afin d'animer des conférences participatives</li>
+		<li>Toute personne peut consulter le contenu des sujets et sessions</li>
+	</ol>
+	<br/>
+	<p>Une conférence participative est une conférence qui se déroule en quatre étapes :</p>
+	<ol>
+		<li>1/4 du temps réservé à des experts du sujet qui font un résumé</li>
+		<li>1/2 du temps réservé à des groupes de travail de maximum 10 personnes qui vont traiter une question liée au sujet afin de s'approprier le plus possible le sujet</li>
+		<li>1/4 du temps réservé à réciter les synthèses et les questions des groupes de travail et à repasser en mode question/réponse avec les experts du sujet</li>
+		<li>mettre les informations de la conférence participative (vidéo, audio, texte) sur la plateforme afin d'en faire profiter un maximum de monde</li>
+	</ol>
+</div>
+
+<div class="divider"></div>
+
 <div class="row">
-	<div class="col s12 m4">
+	<div class="col s12 m6">
 		<div class="card hoverable">
 			<div class="card-image waves-effect waves-block waves-light">
-				<a href="/gives">
-					<img class="responsive-img purple" src="{% static 'img/home-delivery-service.svg' %}" />
+				<a href="/debates">
+					<img class="responsive-img purple" src="{% static 'img/conf.svg' %}" />
 					<div class="card-title">
-						Biens
+						Conférences participatives
 					</div>
 				</a>
 			</div>
 		</div>
 	</div>
-	<div class="col s12 m4">
+	<div class="col s12 m6">
 		<div class="card hoverable">
 			<div class="card-image waves-effect waves-block waves-light">
-				<a href="/stocks">
-					<img class="responsive-img blue" src="{% static 'img/shelves-with-boxes.svg' %}" />
+				<a href="/organizations">
+					<img class="responsive-img blue" src="{% static 'img/org.svg' %}" />
 					<div class="card-title">
-						Stocks
-					</div>
-				</a>
-			</div>
-		</div>
-	</div>
-	<div class="col s12 m4">
-		<div class="card hoverable">
-			<div class="card-image waves-effect waves-block waves-light">
-				<a href="/shares">
-					<img class="responsive-img teal" src="{% static 'img/race-chronometer.svg' %}" />
-					<div class="card-title">
-						Services
+						Organisations
 					</div>
 				</a>
 			</div>

@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="col s6">
+		<a id="vote-{{ vote.id }}-dislike" class="vote-{{ vote.id }} btn-floating halfway-fab waves-effect waves-light {% if vote.score == -1 %}red{% else %}white{% endif %}" onclick="changeVote({{ elt.type }}, {{ elt.id }}, {{ vote.id }}, -1)">
+		<img class="responsive-img" src="{% static 'img/angry.svg' %}" />
+		<!--i class="material-icons">remove</i-->
+		</a>
+	</div>
+	<div class="col s6">
+		<a id="vote-{{ vote.id }}-like" class="vote-{{ vote.id }} btn-floating halfway-fab waves-effect waves-light {% if vote.score == 1 %}green{% else %}white{% endif %}" onclick="changeVote({{ elt.type }}, {{ elt.id }}, {{ vote.id }}, 1)">
+		<img class="responsive-img" src="{% static 'img/happiness.svg' %}" />
+		<!--i class="material-icons">add</i-->
+		</a>
+	</div>
+</div>
+
