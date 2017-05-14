@@ -8,7 +8,7 @@ from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 
 from debate.models import (
-    Account, Debate, Organization, Vote, Category, Stat, Scheduling
+    Account, Topic, Space, Vote, Tag, Stat, Scheduling
 )
 
 from .utils import sendemail
@@ -36,15 +36,15 @@ def basecontext(request, page='home', tableofcontents=False):
 
     :rtype: dict
     """
-    organizationcount = Organization.objects.count()
-    debatecount = Debate.objects.count()
+    spacecount = Space.objects.count()
+    topiccount = Topic.objects.count()
     accountcount = Account.objects.count()
     votecount = Vote.objects.count()
 
-    categories = list(Category.objects.all())
+    categories = list(Tag.objects.all())
 
     result = {
-        'organizationcount': organizationcount, 'debatecount': debatecount,
+        'spacecount': spacecount, 'topiccount': topiccount,
         'votecount': votecount, 'accountcount': accountcount,
         'categories': categories,
         'page': page,
@@ -222,17 +222,17 @@ def appcontext(request, page='home', tableofcontents=False):
     return result
 
 
-def organizationsview(request):
-    """View of organizations."""
-    context = appcontext(request, page='organizations', tableofcontents=True)
+def spacesview(request):
+    """View of spaces."""
+    context = appcontext(request, page='spaces', tableofcontents=True)
     context['fcategories'] = request.GET.get('fcategories')
 
     return render(request, 'search.html', context=context)
 
 
-def debatesview(request):
-    """View of debates."""
-    context = appcontext(request, page='debates', tableofcontents=True)
+def topicsview(request):
+    """View of Topics."""
+    context = appcontext(request, page='topics', tableofcontents=True)
     context['fcategories'] = request.GET.get('fcategories')
     return render(request, 'search.html', context=context)
 
@@ -270,6 +270,51 @@ def editview(request):
     return render(request, 'edit.html', context=context)
 
 
+def edit(request):
+    """Edit space/topic."""
+    etype = request.POST['type']
+
+    if 'id' not in request.POST:
+        instance = globals()[etype.title()]()
+
+    else:
+        instance = globals()[etype.title()].objects.get(id=request.POST['id'])
+
+    def filldefaults(*names):
+        """Fill defaults."""
+        for name in names:
+            if name in request.POST:
+                val = request.POST[name]
+                setattr(instance, name, val)
+
+    if etype in 'comment':
+        filldefaults('content', 'cited')
+
+    else:
+        filldefaults('name', 'description', 'public')
+
+        admins = request.POST.get('admins', '')
+        admins = admins.split(',') if admins else []
+        if request.user.id not in admins:
+            admins.append(request.user.id)
+        instance.save()
+        instance.admins.set(admins)
+
+        if etype == 'space':
+            filldefaults('address', 'lon', 'lat')
+
+    instance.save()
+
+    page = request.POST.get('next', 'search')
+
+    context = appcontext(
+        request, page=page, tableofcontents=True
+    )
+    context['fcategories'] = request.GET.get('fcategories')
+
+    return render(request, '{0}.html'.format(page), context=context)
+
+
 def faqview(request):
     """Faq view."""
     context = basecontext(request, 'faq')
@@ -297,9 +342,9 @@ def statsview(request):
     return render(request, 'stats.html', context=context)
 
 
-def mydebatesview(request):
-    """My debates view."""
-    context = appcontext(request, 'mydebates')
+def mytopicsview(request):
+    """My Topics view."""
+    context = appcontext(request, 'mytopics')
     return render(request, 'mysearch.html', context=context)
 
 
@@ -309,9 +354,15 @@ def myvotesview(request):
     return render(request, 'mysearch.html', context=context)
 
 
-def myorganizationsview(request):
-    """My organizations view."""
-    context = appcontext(request, 'myorganizations')
+def myspacesview(request):
+    """My spaces view."""
+    context = appcontext(request, 'myspaces')
+    return render(request, 'mysearch.html', context=context)
+
+
+def mycommentsview(request):
+    """My comments view."""
+    context = appcontext(request, 'mycomments')
     return render(request, 'mysearch.html', context=context)
 
 

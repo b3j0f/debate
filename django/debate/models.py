@@ -8,11 +8,15 @@ from django.contrib.auth.models import User
 from django.utils.encoding import python_2_unicode_compatible
 from django.db.models import F
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import pre_save, post_save
 
 from address.models import AddressField, Country
 
-from datetime import date
+from time import time
+
+from datetime import date, datetime
+
+from re import compile
 
 
 class Account(models.Model):
@@ -26,15 +30,31 @@ class Account(models.Model):
     )
 
 
-class Media(models.Model):
-    """Media model."""
+class Tag(models.Model):
+    """Tag model."""
 
-    file = models.FileField()
-    url = models.CharField(max_length=255)
+    name = models.CharField(max_length=50, primary_key=True)
+
+    RE = compile('#\w+')
+
+    @staticmethod
+    def settags(commentedelt, tagsfield):
+        """Set tags to commentedelt from input txt."""
+        tagsfieldattr = getattr(commentedelt, tagsfield)
+        tags = [
+            tag[1:] for tag in Tag.RE.findall(tagsfieldattr)
+        ]
+        commentedelt.tags.set(tags)
 
 
-class VotedElement(models.Model):
-    """Voted element model."""
+class CommentedElement(models.Model):
+    """Commented element model."""
+
+    created = models.DateTimeField(blank=True, default=datetime.now)
+    modified = models.DateTimeField(blank=True, default=None, null=True)
+    tags = models.ManyToManyField(
+        Tag, blank=True, default=[], related_name='tagged'
+    )
 
     @property
     def score(self):
@@ -44,78 +64,125 @@ class VotedElement(models.Model):
     @property
     def type(self):
         """Get type name."""
-        return self.__class__.__name__
+        return type(self).__name__
 
 
-class ContactElement(VotedElement):
+@receiver(pre_save, sender=CommentedElement)
+def update(sender, instance, **kwargs):
+    """Update modified."""
+    instance.modified = time()
+
+
+class Comment(CommentedElement):
+    """Comment model."""
+
+    author = models.ForeignKey(Account, blank=True, related_name='comments')
+    cited = models.ManyToManyField(
+        Account, default=[], blank=True, related_name='cited'
+    )
+    content = models.CharField(max_length=255, db_index=True)
+    commentated = models.ForeignKey(
+        CommentedElement, related_name='comments', blank=True
+    )
+
+    CITED_RE = compile(r'@\w+')
+
+    def setcited(self):
+        """Set cited."""
+        cited = [cited[1:] for cited in Comment.CITED_RE.findall(self.content)]
+        self.cited.set(cited)
+
+
+@receiver(pre_save, sender=Comment)
+def updatecomment(sender, instance, **kwargs):
+    """Update modified time if element is updated."""
+    Tag.settags(instance, 'content')
+    instance.setcited()
+
+
+class Media(models.Model):
+    """Media model."""
+
+    file = models.FileField()
+    url = models.CharField(max_length=255)
+    source = models.ForeignKey(
+        CommentedElement, blank=True, related_name='medias'
+    )
+
+
+class AdministratedElement(CommentedElement):
     """Contact element model."""
 
-    name = models.CharField(max_length=50, blank=True)
-    description = models.CharField(max_length=255, blank=True)
-    public = models.BooleanField(default=True, blank=True)
-    medias = models.ManyToManyField(
-        Media, default=[], blank=True, related_name='+'
+    name = models.CharField(max_length=50, blank=True, db_index=True)
+    description = models.CharField(max_length=255, blank=True, db_index=True)
+    public = models.BooleanField(default=True, blank=True, db_index=True)
+    admins = models.ManyToManyField(Account, default=[], blank=True)
+
+
+@receiver(pre_save, sender=AdministratedElement)
+def updateadministratedelt(sender, instance, **kwargs):
+    """Update modified time if element is updated."""
+    Tag.settags(instance, 'description')
+
+
+class Topic(AdministratedElement):
+    """Topic model."""
+
+    base = models.OneToOneField(
+        AdministratedElement,
+        parent_link=True, related_name='_topic', blank=True
     )
-    contacts = models.ManyToManyField(
-        Account, related_name='debates', blank=True
-    )
 
 
-class Debate(ContactElement):
-    """Debate model."""
-
-
-class Organization(ContactElement):
-    """Organization model."""
+class Space(AdministratedElement):
+    """Space model."""
 
     address = AddressField(blank=True)
-    lon = models.FloatField(blank=True)
-    lat = models.FloatField(blank=True)
+    lon = models.FloatField(blank=True, db_index=True)
+    lat = models.FloatField(blank=True, db_index=True)
+
+    base = models.OneToOneField(
+        AdministratedElement,
+        parent_link=True, related_name='_space', blank=True
+    )
 
     @property
     def sorteddebates(self):
-        """Get sorted debates by voting score."""
+        """Get sorted topics by voting score."""
         return sorted(
-            list(self.debates.filter(scheduling=None)), key='score',
+            list(self.topics.filter(scheduling=None)), key='score',
             reversed=True
         )
 
 
-class Scheduling(VotedElement):
+class Scheduling(AdministratedElement):
     """Scheduling model."""
 
     date = models.DateField(blank=True)
     mduration = models.IntegerField(default=60, blank=True)
-    organization = models.ForeignKey(
-        Organization, blank=True, related_name='schedulings'
+    space = models.ForeignKey(
+        Space, blank=True, related_name='schedulings'
     )
-    debate = models.OneToOneField(Debate, blank=True)
+    topic = models.ForeignKey(Topic, blank=True, related_name='schedulings')
+    base = models.OneToOneField(
+        AdministratedElement,
+        parent_link=True, related_name='_scheduling', blank=True
+    )
 
 
 class Vote(models.Model):
     """Vote model."""
 
     account = models.ForeignKey(Account, blank=True, related_name='votes')
-    votedelement = models.ForeignKey(
-        VotedElement, blank=True, related_name='votes'
+    voted = models.ForeignKey(
+        CommentedElement, blank=True, related_name='votes'
     )
     value = models.IntegerField()
 
     class Meta:
         """Vote meta class."""
 
-        unique_together = ('account', 'votedelement')
-
-
-class Category(models.Model):
-    """Category model."""
-
-    name = models.CharField(max_length=50, primary_key=True)
-    description = models.CharField(max_length=255)
-    debates = models.ManyToManyField(Debate, blank=True, default=[])
-    organizations = models.ManyToManyField(
-        Organization, blank=True, default=[]
-    )
+        unique_together = ('account', 'voted')
 
 
 @python_2_unicode_compatible
@@ -135,15 +202,23 @@ class Stat(models.Model):
 
     date = models.DateField(default=date.today, primary_key=True)
     accounts = models.IntegerField(default=0)
-    debates = models.IntegerField(default=0)
-    organizations = models.IntegerField(default=0)
+    topics = models.IntegerField(default=0)
+    spaces = models.IntegerField(default=0)
     votes = models.IntegerField(default=0)
 
     def __str__(self):
         """Representation."""
         return tostr(
-            self, 'date', 'account', 'debates', 'organizations', 'votes'
+            self, 'date', 'account', 'topics', 'spaces', 'votes'
         )
+
+
+class ProjectionEntry(models.Model):
+    """Projection Entry."""
+
+    scheduling = models.OneToOneField(Scheduling, blank=True)
+    question = models.CharField(max_length=255, db_index=True)
+    answers = models.CharField(max_length=255, db_index=True)
 
 
 def getorcreatestat(**kwargs):
@@ -161,9 +236,9 @@ def getorcreatestat(**kwargs):
 
 
 @receiver(post_save, sender=Account)
-@receiver(post_save, sender=Debate)
+@receiver(post_save, sender=Topic)
 @receiver(post_save, sender=Vote)
-@receiver(post_save, sender=Organization)
+@receiver(post_save, sender=Space)
 def updatenewitems(sender, instance, created, **kwargs):
     """Save duration in stats."""
     if created:

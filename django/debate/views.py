@@ -1,15 +1,15 @@
 """View module."""
 
 from .models import (
-    Account, User, Debate, Scheduling, Organization, Vote, Category, Media,
+    Account, User, Topic, Scheduling, Space, Vote, Tag, Media,
     Stat
 )
 from .serializers import (
-    AccountSerializer, UserSerializer, DebateSerializer, MediaSerializer,
-    SchedulingSerializer, VoteSerializer, CategorySerializer,
-    OrganizationSerializer, StatSerializer
+    AccountSerializer, UserSerializer, TopicSerializer, MediaSerializer,
+    SchedulingSerializer, VoteSerializer, TagSerializer,
+    SpaceSerializer, StatSerializer
 )
-from .permissions import IsVoter, IsContactOrReadOnly, IsOrganizerOrReadOnly
+from .permissions import IsVoter, IsAdminOrReadOnly
 
 from rest_framework.viewsets import ModelViewSet
 
@@ -40,11 +40,11 @@ class UserViewSet(ModelViewSet):
     }
 
 
-class DebateViewSet(ModelViewSet):
-    """Debate view set."""
+class TopicViewSet(ModelViewSet):
+    """Topic view set."""
 
-    queryset = Debate.objects.all()
-    serializer_class = DebateSerializer
+    queryset = Topic.objects.all()
+    serializer_class = TopicSerializer
     filter_fields = {
         'id': ['exact'],
         'contact': ['exact'],
@@ -54,7 +54,7 @@ class DebateViewSet(ModelViewSet):
         'description': ['icontains'],
         'medias': ['exact']
     }
-    permission_classes = (IsContactOrReadOnly,)
+    permission_classes = (IsAdminOrReadOnly,)
 
 
 class MediaViewSet(ModelViewSet):
@@ -66,7 +66,7 @@ class MediaViewSet(ModelViewSet):
         'id': ['exact'],
         'file': ['exact'],
         'url': ['icontains'],
-        'debate': ['exact']
+        'topic': ['exact']
     }
 
 
@@ -79,22 +79,22 @@ class SchedulingViewSet(ModelViewSet):
         'id': ['exact'],
         'date': ['exact', 'lte', 'gte'],
         'mduration': ['exact', 'lte', 'gte'],
-        'organization': ['exact']
+        'Space': ['exact']
     }
 
 
-class OrganizationViewSet(ModelViewSet):
-    """Organization view set."""
+class SpaceViewSet(ModelViewSet):
+    """Space view set."""
 
-    queryset = Organization.objects.all()
-    serializer_class = OrganizationSerializer
+    queryset = Space.objects.all()
+    serializer_class = SpaceSerializer
     filter_fields = {
         'id': ['exact'],
-        'Organization': ['exact'],
+        'space': ['exact'],
         'product': ['exact'],
         'state': ['exact']
     }
-    permission_classes = (IsOrganizerOrReadOnly,)
+    permission_classes = (IsAdminOrReadOnly,)
 
 
 class VoteViewSet(ModelViewSet):
@@ -105,22 +105,22 @@ class VoteViewSet(ModelViewSet):
     filter_fields = {
         'id': ['exact'],
         'account': ['exact'],
-        'debate': ['exact'],
+        'topic': ['exact'],
         'value': ['exact', 'gte', 'lte']
     }
     permission_classes = (IsVoter,)
 
 
-class CategoryViewSet(ModelViewSet):
-    """Category view set."""
+class TagViewSet(ModelViewSet):
+    """Tag view set."""
 
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
     filter_fields = {
         'id': ['exact'],
         'name': ['exact', 'icontains'],
         'description': ['icontains'],
-        'debates': ['exact']
+        'topicS': ['exact']
     }
 
 
@@ -133,6 +133,6 @@ class StatViewSet(ModelViewSet):
         'id': ['exact'],
         'date': ['exact', 'lte', 'gte'],
         'accounts': ['exact', 'lte', 'gte'],
-        'organizations': ['exact', 'lte', 'gte'],
+        'spaces': ['exact', 'lte', 'gte'],
         'votes': ['exact', 'lte', 'gte'],
     }

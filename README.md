@@ -12,7 +12,7 @@ According to participative conference where
 
 The platform aims to
 - permit to users to propose conference topics and vote for them
-- permit to users to create organisations in order to animate conferences
+- permit to users to create spaces in order to animate conferences
 - permit to conference animators to share conferences experience (video, audio, photo, text) with the internet
 
 ## Development

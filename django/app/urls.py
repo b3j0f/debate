@@ -1,5 +1,5 @@
 # coding: utf-8
-"""Debate URL Configuration.
+"""debate URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -25,25 +25,25 @@ from rest_framework.routers import DefaultRouter
 
 from .views import (
     homeview, aboutview, loginview, logoutview, resetpwdview, editview,
-    accountview, accountsview, organizationsview, faqview, debatesview,
-    searchview, statsview, votesview, mydebatesview, myorganizationsview,
-    myvotesview, mystatsview
+    accountview, accountsview, spacesview, faqview, topicsview,
+    searchview, statsview, votesview, mytopicsview, myspacesview,
+    myvotesview, mystatsview, edit, mycommentsview
 )
 
 from debate.views import (
-    CategoryViewSet, AccountViewSet, UserViewSet, DebateViewSet,
-    MediaViewSet, SchedulingViewSet, OrganizationViewSet, VoteViewSet,
+    TagViewSet, AccountViewSet, UserViewSet, TopicViewSet,
+    MediaViewSet, SchedulingViewSet, SpaceViewSet, VoteViewSet,
     StatViewSet
 )
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'accounts', AccountViewSet)
-router.register(r'categories', CategoryViewSet)
-router.register(r'debates', DebateViewSet)
+router.register(r'tags', TagViewSet)
+router.register(r'topics', TopicViewSet)
 router.register(r'medias', MediaViewSet)
 router.register(r'schedulings', SchedulingViewSet)
-router.register(r'organizations', OrganizationViewSet)
+router.register(r'spaces', SpaceViewSet)
 router.register(r'votes', VoteViewSet)
 router.register(r'stats', StatViewSet)
 
@@ -64,16 +64,20 @@ urlpatterns = [
     url(r'^resetpwd', resetpwdview),
     url(r'^accounts', accountsview),
     url(r'^account', accountview),
-    url(r'^organizations', organizationsview),
-    url(r'^debates', debatesview),
+    url(r'^spaces', spacesview),
+    url(r'^topics', topicsview),
     url(r'^votes', votesview),
     url(r'^stats', statsview),
-    url(r'^myorganizations', myorganizationsview),
-    url(r'^mydebates', mydebatesview),
+    url(r'^myspaces', myspacesview),
+    url(r'^mytopics', mytopicsview),
     url(r'^myvotes', myvotesview),
+    url(r'^mycomments', mycommentsview),
     url(r'^mystats', mystatsview),
     url(r'^edit', editview),
     url(r'^search', searchview),
+    url(r'^space', edit),
+    url(r'^topic', edit),
+    url(r'^comment', edit),
     url('test', lambda request: render(request, 'test.html'))
 ] + static(
     settings.STATIC_URL, document_root=settings.STATIC_ROOT

@@ -9,89 +9,95 @@
     <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}" />
 
     <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <!--link href="{% static 'css/icon.css' %}" rel="stylesheet" /-->
+    <!--link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /-->
+    <link href="{% static 'css/icon.css' %}" rel="stylesheet" />
 
     <!-- Compiled and minified CSS -->
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" media="screen,projection" />
-    <!--link type="text/css" rel="stylesheet" href="{% static 'css/materialize.css' %}" media="screen,projection" /-->
+    <!--link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" media="screen,projection" /-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.css' %}" media="screen,projection" />
 
     <!-- c3 -->
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
-    <!--link type="text/css" rel="stylesheet" href="{% static 'css' %}/c3.{% if not DEBUG %}min.{% endif %}css"-->
+    <!--link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css' %}/c3.{% if not DEBUG %}min.{% endif %}css">
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.0/ol.css" />
-    <!--link rel="stylesheet" type="text/css" href="{% static 'css/ol.css' %}" /-->
+    <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.0/ol.css" /-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ol.css' %}" />
 
-    <script src="https://apis.google.com/js/platform.js"></script>
-    <!--script src="{% static 'js/platform.js' %}"></script-->
+    <!--script src="https://apis.google.com/js/platform.js"></script-->
+    <script src="{% static 'js/platform.js' %}"></script>
 
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <!--script src="https://www.google.com/recaptcha/api.js"></script-->
+    <script src="{% static 'js/api.js' %}"></script>
 
     <script src="https://buttons.github.io/buttons.js"></script>
     <!--script src="{% static 'js/buttons.js' %}"></script-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.0/ol.js"></script>
-    <!--script src="{% static 'js/ol.js' %}"></script-->
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.0/ol.js"></script-->
+    <script src="{% static 'js/ol.js' %}"></script>
 
     <!-- nouislider -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.2.0/nouislider.min.css" />
-    <!--link rel="stylesheet" type="text/css" href="{% static 'css' %}/nouislider.{% if not DEBUG %}min.{% endif %}css" /-->
+    <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.2.0/nouislider.min.css" /-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css' %}/nouislider.{% if not DEBUG %}min.{% endif %}css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.2.0/nouislider.{% if DEBUG %}min.{% endif %}js"></script>
-    <!--script src="{% static 'js' %}/nouislider.{% if not DEBUG %}min.{% endif %}js"></script-->
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.2.0/nouislider.{% if DEBUG %}min.{% endif %}js"></script-->
+    <script src="{% static 'js' %}/nouislider.{% if not DEBUG %}min.{% endif %}js"></script>
 
     <!-- Let browser know website is optimized for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Import jQuery before materialize.js -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.{% if DEBUG %}min.{% endif %}js"></script>
-    <!--script type="text/javascript" src="{% static 'js' %}/jquery-2.1.1.{% if not DEBUG %}min.{% endif %}js"></script-->
-    <script src="https://cdn.ravenjs.com/3.14.2/raven.min.js"></script>
+    <!--script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.{% if DEBUG %}min.{% endif %}js"></script-->
+    <script type="text/javascript" src="{% static 'js' %}/jquery-2.1.1.{% if not DEBUG %}min.{% endif %}js"></script>
+    <!--script src="https://cdn.ravenjs.com/3.14.2/raven.min.js"></script-->
+    <script src="{% static 'js/raven.min.js' %}"></script>
     <script type="text/javascript" charset="utf-8">
         Raven.config('https://f2e15a14e17447408083fa53c82d7eb5@sentry.io/165355').install()
     </script>
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.{% if DEBUG %}min.{% endif %}js"></script>
-    <!--script src="{% static 'js' %}/materialize.{% if not DEBUG %}min.{% endif %}js"></script-->
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.{% if DEBUG %}min.{% endif %}js"></script-->
+    <script src="{% static 'js' %}/materialize.{% if not DEBUG %}min.{% endif %}js"></script>
     <!-- d3 -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.{% if DEBUG %}min.{% endif %}js"></script>
-    <!--script type="text/javascript" src="{% static 'js' %}/d3.{% if not DEBUG %}min.{% endif %}js"></script-->
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.{% if DEBUG %}min.{% endif %}js"></script-->
+    <script type="text/javascript" src="{% static 'js' %}/d3.{% if not DEBUG %}min.{% endif %}js"></script>
     <!-- c3 -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.{% if DEBUG %}min.{% endif %}js"></script>
-    <!--script type="text/javascript" src="{% static 'js' %}/c3.{% if not DEBUG %}min.{% endif %}js"></script-->
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.{% if DEBUG %}min.{% endif %}js"></script-->
+    <script type="text/javascript" src="{% static 'js' %}/c3.{% if not DEBUG %}min.{% endif %}js"></script>
 
     <!-- dropify -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/css/dropify.{% if DEBUG %}min.{% endif %}css" />
-    <!--link rel="stylesheet" type="text/css" href="{% static 'css' %}/dropify.{% if not DEBUG %}min.{% endif %}css" /-->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/js/dropify.{% if DEBUG %}min.{% endif %}js" ></script>
-    <!--script type="text/javascript" src="{% static 'js' %}/dropify.{% if not DEBUG %}min.{% endif %}js" ></script-->
-    <link rel="stylesheet" type="text/eot" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.eot" />
-    <!--link rel="stylesheet" type="text/eot" href="{% static 'fonts/dropify.eot' %}" /-->
-    <link rel="stylesheet" type="image/svg" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.svg" />
-    <!--link rel="stylesheet" type="image/svg" href="{% static 'img/dropify.svg' %}" /-->
-    <link rel="stylesheet" type="application/font-sfnt" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.ttf" />
-    <!--link rel="stylesheet" type="application/font-sfnt" href="{% static 'fonts/dropify.ttf' %}" /-->
-    <link rel="stylesheet" type="application/font-woff" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.woff" />
-    <!--link rel="stylesheet" type="application/font-woff" href="{% static 'fonts/dropify.woff' %}" /-->
+    <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/css/dropify.{% if DEBUG %}min.{% endif %}css" /-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css' %}/dropify.{% if not DEBUG %}min.{% endif %}css" />
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/js/dropify.{% if DEBUG %}min.{% endif %}js" ></script-->
+    <script type="text/javascript" src="{% static 'js' %}/dropify.{% if not DEBUG %}min.{% endif %}js" ></script>
+    <!--link rel="stylesheet" type="text/eot" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.eot" /-->
+    <link rel="stylesheet" type="text/eot" href="{% static 'fonts/dropify.eot' %}" />
+    <!--link rel="stylesheet" type="image/svg" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.svg" /-->
+    <link rel="stylesheet" type="image/svg" href="{% static 'img/dropify.svg' %}" />
+    <!--link rel="stylesheet" type="application/font-sfnt" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.ttf" /-->
+    <link rel="stylesheet" type="application/font-sfnt" href="{% static 'fonts/dropify.ttf' %}" />
+    <!--link rel="stylesheet" type="application/font-woff" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/fonts/dropify.woff" /-->
+    <link rel="stylesheet" type="application/font-woff" href="{% static 'fonts/dropify.woff' %}" />
 
     <!-- fullcalendar -->
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.{% if DEBUG %}min.{% endif %}js"></script>
-    <!--script type="text/javascript" src="{% static 'js' %}/moment.min.js"></script-->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.{% if not DEBUG %}min.{% endif %}js"></script>
-    <!--script type="text/javascript" src="{% static 'js' %}/fullcalendar.{% if not DEBUG %}min.{% endif %}js"></script-->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/gcal.{% if not DEBUG %}min.{% endif %}js"></script>
-    <!--script type="text/javascript" src="{% static 'js' %}/gcal.{% if not DEBUG %}min.{% endif %}js"></script-->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/locale-all.js"></script>
-    <!--script type="text/javascript" src="{% static 'js/locale-all.js' %}"></script-->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.{% if not DEBUG %}min.{% endif %}css" />
-    <!--link rel="stylesheet" type="text/css" href="{% static 'css' %}/fullcalendar.{% if not DEBUG %}min.{% endif %}css" /-->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.{% if not DEBUG %}min.{% endif %}css" />
-    <!--link rel="stylesheet" type="text/css" href="{% static 'css' %}/fullcalendar.print.{% if not DEBUG %}min.{% endif %}css" /-->
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.{% if DEBUG %}min.{% endif %}js"></script-->
+    <script type="text/javascript" src="{% static 'js' %}/moment.min.js"></script>
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.{% if not DEBUG %}min.{% endif %}js"></script-->
+    <script type="text/javascript" src="{% static 'js' %}/fullcalendar.{% if not DEBUG %}min.{% endif %}js"></script>
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/gcal.{% if not DEBUG %}min.{% endif %}js"></script-->
+    <script type="text/javascript" src="{% static 'js' %}/gcal.{% if not DEBUG %}min.{% endif %}js"></script>
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/locale-all.js"></script-->
+    <script type="text/javascript" src="{% static 'js/locale-all.js' %}"></script>
+    <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.{% if not DEBUG %}min.{% endif %}css" /-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css' %}/fullcalendar.{% if not DEBUG %}min.{% endif %}css" />
+    <!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.{% if not DEBUG %}min.{% endif %}css" /-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css' %}/fullcalendar.print.{% if not DEBUG %}min.{% endif %}css" />
 
     <!-- qrcode -->
     <script type="text/javascript" src="{% static 'js' %}/qrcode.{% if not DEBUG %}min.{% endif %}js"></script>
+
+    <!-- cookie -->
+    <script type="text/javascript" src="{% static 'js' %}/jquery.cookie.{% if not DEBUG %}min.{% endif %}js"></script>
+    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.{% if not DEBUG %}min.{% endif %}js"></script-->
 
     <!-- local -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
@@ -114,8 +120,8 @@
     <ul id="usermenu" class="dropdown-content">
         <li><a href="/account" {% if page == 'account' %}class="active"{% endif %}>Mon compte</a></li>
         <li class="divider"></li>
-        <li><a href="/mydebates" {% if page == 'mydebates' %}class="active"{% endif %}>Mes débats</a></li>
-        <li><a href="/myorganizations" {% if page == 'myorganizations' %}class="active"{% endif %}>Mes organisations</a></li>
+        <li><a href="/mytopics" {% if page == 'mytopics' %}class="active"{% endif %}>Mes sujets</a></li>
+        <li><a href="/myspaces" {% if page == 'myspaces' %}class="active"{% endif %}>Mes spaces</a></li>
         <li><a href="/myvotes" {% if page == 'myvotes' %}class="active"{% endif %}>Mes votes</a></li>
         <li><a href="/logout?next={{ next }}">déconnexion</a></li>
     </ul>
@@ -124,27 +130,27 @@
         {% if user.is_authenticated %}
         <li class="{% if page == 'account' %}active{% endif %}"><a class="waves-effect waves-light" href="/account">{{ user.email }}</a></li>
         <li class="divider"></li>
-        <li><a href="/mydebates" {% if page == 'mydebates' %}class="active"{% endif %}>Mes débats</a></li>
-        <li><a href="/myorganizations" {% if page == 'myorganizations' %}class="active"{% endif %}>Mes organisations</a></li>
+        <li><a href="/mytopics" {% if page == 'mytopics' %}class="active"{% endif %}>Mes sujets</a></li>
+        <li><a href="/myspaces" {% if page == 'myspaces' %}class="active"{% endif %}>Mes spaces</a></li>
         <li><a href="/myvotes" {% if page == 'myvotes' %}class="active"{% endif %}>Mes votes</a></li>
         <li><a class="waves-effect waves-light btn" href="/logout?next={{ next }}">Déconnexion</a></li>
         {% else %}
         <li><a class="waves-effect waves-light btn" href="/login?next={{ next }}">Connexion</a></li>
         {% endif %}
         <li class="divider"></li>
-        <li class="{% if page == 'debates' %}active{% endif %}"><a href="/debates" class="waves-effect">Débats</a></li>
-        <li class="{% if page == 'organizations' %}active{% endif %}"><a href="/organizations" class="waves-effect">Organisations</a></li>
+        <li class="{% if page == 'topics' %}active{% endif %}"><a href="/topics" class="waves-effect">Débats</a></li>
+        <li class="{% if page == 'spaces' %}active{% endif %}"><a href="/spaces" class="waves-effect">Endroits</a></li>
     </ul>
 
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo{% if page == 'home' %} active{% endif %}">
-                    Debate
+                    Knowledge Share
                 </a>
                 <ul id="nav-lechangement" class="right hide-on-med-and-down">
-                    <li class="{% if page == 'debates' %}active{% endif %}"><a href="/debates">Débats</a></li>
-                    <li class="{% if page == 'organizations' %}active{% endif %}"><a href="/organizations">Organisations</a></li>
+                    <li class="{% if page == 'topics' %}active{% endif %}"><a href="/topics">Sujets</a></li>
+                    <li class="{% if page == 'spaces' %}active{% endif %}"><a href="/spaces">Endroits</a></li>
                     {% if user.is_authenticated %}
                     <!-- Dropdown Trigger -->
                     <li class="{% if page == 'account' %}active{% endif %}"><a class="dropdown-button" href="#!" data-activates="usermenu">{{ user.email }}<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -213,7 +219,7 @@
                         </li>
                         {% endif %}
                     </ul>
-                    <script src="https://liberapay.com/lechangement/widgets/receiving.js"></script>
+                    <script src="https://liberapay.com/topic/widgets/receiving.js"></script>
                     <ul class="section table-of-contents">
                         {% block tableofcontents %}
                         {% endblock %}

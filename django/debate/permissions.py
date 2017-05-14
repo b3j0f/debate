@@ -19,31 +19,16 @@ class IsVoter(IsAuthenticated):
         return result
 
 
-class IsContactOrReadOnly(IsAuthenticatedOrReadOnly):
-    """Custom permission to only allow contact of an object to edit it."""
+class IsAdminOrReadOnly(IsAuthenticatedOrReadOnly):
+    """Custom permission to only allow admin of an object to edit it."""
 
     def has_object_permission(self, request, view, obj):
-        """True iif method is safe or if owners are user."""
-        result = super(IsContactOrReadOnly, self).has_object_permission(
+        """True iif method is safe or if admins are user."""
+        result = super(IsAdminOrReadOnly, self).has_object_permission(
             request, view, obj
         )
 
         if not result:
-            result = obj.contact.id == request.user.id
-
-        return result
-
-
-class IsOrganizerOrReadOnly(IsAuthenticatedOrReadOnly):
-    """Custom permission to only allow organizers to edit it."""
-
-    def has_object_permission(self, request, view, obj):
-        """True iif method is safe or if suppliers are user."""
-        result = super(IsOrganizerOrReadOnly, self).has_object_permission(
-            request, view, obj
-        )
-
-        if not result:
-            result = obj.organizers.filter(pk=request.user.id).exist()
+            result = obj.admin.id == request.user.id
 
         return result

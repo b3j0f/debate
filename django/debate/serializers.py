@@ -1,9 +1,9 @@
 """Serialization module."""
 
 from .models import (
-    Account, Debate, Media, Scheduling, Organization, Category, Vote, Stat
+    Account, Topic, Media, Scheduling, Space, Tag, Vote, Stat
 )
-from .permissions import IsVoter, IsContactOrReadOnly, IsOrganizerOrReadOnly
+from .permissions import IsVoter, IsAdminOrReadOnly
 
 from django.contrib.auth.models import User
 
@@ -30,15 +30,15 @@ class UserSerializer(HyperlinkedModelSerializer):
         fields = ['account']
 
 
-class DebateSerializer(HyperlinkedModelSerializer):
-    """Debate serializer."""
+class TopicSerializer(HyperlinkedModelSerializer):
+    """Topic serializer."""
 
-    permission_classes = (IsContactOrReadOnly,)
+    permission_classes = (IsAdminOrReadOnly,)
 
     class Meta:
         """Group serializer meta class."""
 
-        model = Debate
+        model = Topic
         fields = [
             'contact', 'name', 'description', 'public', 'score', 'medias'
         ]
@@ -51,7 +51,7 @@ class MediaSerializer(HyperlinkedModelSerializer):
         """Media serializer meta class."""
 
         model = Media
-        fields = ['file', 'url', 'debate']
+        fields = ['file', 'url', 'topic']
 
 
 class SchedulingSerializer(HyperlinkedModelSerializer):
@@ -61,20 +61,20 @@ class SchedulingSerializer(HyperlinkedModelSerializer):
         """Scheduling serializer meta class."""
 
         model = Scheduling
-        fields = ['date', 'mduration', 'organization']
+        fields = ['date', 'mduration', 'space']
 
 
-class OrganizationSerializer(HyperlinkedModelSerializer):
-    """Organization serializer."""
+class SpaceSerializer(HyperlinkedModelSerializer):
+    """Space serializer."""
 
-    permission_classes = (IsOrganizerOrReadOnly, )
+    permission_classes = (IsAdminOrReadOnly, )
 
     class Meta:
-        """Organization serializer meta class."""
+        """Space serializer meta class."""
 
-        model = Organization
+        model = Space
         fields = [
-            'organizers', 'address', 'lon', 'lat', 'sorteddebates', 'medias',
+            'admins', 'address', 'lon', 'lat', 'sortedtopics', 'medias',
             'name', 'description'
         ]
 
@@ -88,17 +88,17 @@ class VoteSerializer(HyperlinkedModelSerializer):
         """Vote serializer meta class."""
 
         model = Vote
-        fields = ['account', 'debate', 'value']
+        fields = ['account', 'topic', 'value']
 
 
-class CategorySerializer(HyperlinkedModelSerializer):
-    """Category serializer."""
+class TagSerializer(HyperlinkedModelSerializer):
+    """Tag serializer."""
 
     class Meta:
-        """Category serializer meta class."""
+        """Tag serializer meta class."""
 
-        model = Category
-        fields = ['name', 'description', 'debates']
+        model = Tag
+        fields = ['name', 'tagged']
 
 
 class StatSerializer(HyperlinkedModelSerializer):
@@ -108,4 +108,4 @@ class StatSerializer(HyperlinkedModelSerializer):
         """Stat serializer meta class."""
 
         model = Stat
-        fields = ['date', 'accounts', 'debates', 'organizations', 'votes']
+        fields = ['date', 'accounts', 'Topics', 'Spaces', 'votes']

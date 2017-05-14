@@ -7,15 +7,15 @@ $('.add').show();
 {% endif %}
 
 var types = {
-    organization: {
-        translation: 'Organisation',
-        name: 'Débats publics sur Lille',
+    topic: {
+        translation: 'Sujet',
+        name: 'Agir au lendemain des élections',
         shortdescription: '',
         description: ''
     },
-    debate: {
-        translation: 'Conférence participative',
-        name: 'Agir au lendemain des élections',
+    space: {
+        translation: 'Endroit',
+        name: 'Débats publics place de la République à Lille',
         shortdescription: '',
         description: ''
     }
@@ -31,7 +31,7 @@ var elt = {
     name: '{{ elt.name }}',
     description: '{{ elt.description }}',
     created: '{{ elt.created }}',
-    contacts: [{% for contacts in elt.contactss.all %}'{{ contacts.id }}', {% endfor %}],
+    contacts: [{% for contacts in elt.contacts.all %}'{{ contacts.id }}', {% endfor %}],
     categories: [{% for category in elt.categories.all %}'{{ category.id }}', {% endfor %}],
     public: {% if elt.public %}true{% else %}false{% endif %},
     medias: [{% for media in elt.medias.all %}'{{ media.url }}', {% endfor %}],
@@ -137,6 +137,8 @@ function changeType(type) {
     document.getElementById('type').innerHTML = dtype.translation;
     document.getElementsByName('type')[0].setAttribute('value', type);
 
+    document.getElementById('formedit').action = '/' + type;
+
     for(var _type in types) {
         $('.' + _type).hide();
     }
@@ -158,6 +160,8 @@ changeType({{ elt.type }} || {{ type }});
 {% else %}
 changeType(Object.keys(types)[0]);
 {% endif %}
+
+
 
 {% include 'categories.js' %}
 

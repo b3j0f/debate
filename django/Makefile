@@ -18,11 +18,11 @@ migrate: migrations
 
 .PHONY: fixtures
 fixtures:
-	$(LOADDATA) categories
+	$(LOADDATA) forbiddendomains
 
 .PHONY: superuser
 superuser:
-	$(LOADDATA) users forbiddendomains
+	$(LOADDATA) users
 
 .PHONY: static
 static:
