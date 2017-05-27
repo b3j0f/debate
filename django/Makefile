@@ -10,7 +10,7 @@ all: migrations migrate fixtures
 
 .PHONY: migrations
 migrations:
-	$(DJANGO) makemigrations debate
+	$(DJANGO) makemigrations core
 
 .PHONY: migrate
 migrate: migrations
@@ -18,7 +18,7 @@ migrate: migrations
 
 .PHONY: fixtures
 fixtures:
-	$(LOADDATA) forbiddendomains
+	$(LOADDATA) forbiddendomains eventtypes
 
 .PHONY: superuser
 superuser:

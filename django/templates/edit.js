@@ -6,6 +6,8 @@ $('.update').show();
 $('.add').show();
 {% endif %}
 
+var type = '{{ type }}';
+
 var types = {
     topic: {
         translation: 'Sujet',
@@ -18,8 +20,19 @@ var types = {
         name: 'Débats publics place de la République à Lille',
         shortdescription: '',
         description: ''
+    },
+    event: {
+        translation: 'conférence',
+        name: 'Agir au lendemain des élections tous les mardis',
+        shortdescription: '',
+        description: ''
     }
 };
+
+for(var _type in types) {
+    $('.' + _type).hide();
+}
+$('.' + type).show();
 
 var typesul = document.getElementById('types');
 for(var type in types) {
@@ -32,7 +45,7 @@ var elt = {
     description: '{{ elt.description }}',
     created: '{{ elt.created }}',
     contacts: [{% for contacts in elt.contacts.all %}'{{ contacts.id }}', {% endfor %}],
-    categories: [{% for category in elt.categories.all %}'{{ category.id }}', {% endfor %}],
+    tags: [{% for category in elt.tags.all %}'{{ category.id }}', {% endfor %}],
     public: {% if elt.public %}true{% else %}false{% endif %},
     medias: [{% for media in elt.medias.all %}'{{ media.url }}', {% endfor %}],
     address: '{{ elt.address }}',
@@ -156,13 +169,13 @@ function newId() {
 }
 
 {% if elt or type %}
-changeType({{ elt.type }} || {{ type }});
+changeType('{{ elt.type }}' || '{{ type }}');
 {% else %}
 changeType(Object.keys(types)[0]);
 {% endif %}
 
 
 
-{% include 'categories.js' %}
+{% include 'tags.js' %}
 
 {% include 'map.js' %}

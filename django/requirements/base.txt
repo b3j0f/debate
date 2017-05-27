@@ -7,3 +7,4 @@ pyyaml
 django-cors-headers
 django-gravatar2
 raven
+SpeechRecognition

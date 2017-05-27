@@ -1,0 +1,24 @@
+- model: core.eventtype
+  fields:
+    name: course
+    description: Course given by topic specialists where the audience can ask for quick questions
+
+- model: core.eventtype
+  fields:
+    name: conference
+    description: Conference given by topic specialists where the audience can ask for quick questions at the end
+
+- model: core.eventtype
+  fields:
+    name: debate
+    description: Discussion between topic specialists with a passive audience
+
+- model: core.eventtype
+  fields:
+    name: world_cafe
+    description: mix of course and debate in 3 parts where topic conference by specialists, work on topic questions by groups of less than 10 people and group work synthetises with questions to the specialist
+
+- model: core.eventtype
+  fields:
+    name: practical work
+    description: knowledge session by practicing

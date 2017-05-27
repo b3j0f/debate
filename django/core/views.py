@@ -1,12 +1,12 @@
 """View module."""
 
 from .models import (
-    Account, User, Topic, Scheduling, Space, Vote, Tag, Media,
+    Account, User, Topic, Event, Space, Vote, Tag, Media,
     Stat
 )
 from .serializers import (
     AccountSerializer, UserSerializer, TopicSerializer, MediaSerializer,
-    SchedulingSerializer, VoteSerializer, TagSerializer,
+    EventSerializer, VoteSerializer, TagSerializer,
     SpaceSerializer, StatSerializer
 )
 from .permissions import IsVoter, IsAdminOrReadOnly
@@ -70,11 +70,11 @@ class MediaViewSet(ModelViewSet):
     }
 
 
-class SchedulingViewSet(ModelViewSet):
-    """Scheduling view set."""
+class EventViewSet(ModelViewSet):
+    """Event view set."""
 
-    queryset = Scheduling.objects.all()
-    serializer_class = SchedulingSerializer
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
     filter_fields = {
         'id': ['exact'],
         'date': ['exact', 'lte', 'gte'],

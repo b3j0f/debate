@@ -20,10 +20,10 @@ for(var index in center) {
 	center[index] = parseFloat(center[index]);
 }
 
-var clusterSource = new ol.source.Cluster({
+/*var clusterSource = new ol.source.Cluster({
 	distance: parseInt('40', 10),
-	source: features
-});
+	//source: features
+});*/
 
 function getClusterStyle(size) {
 	var result = styleClusterCache[size];
@@ -78,13 +78,13 @@ function getStyle(feature) {
 	return result;
 }
 
-var clusters = new ol.layer.Vector({
+/*var clusters = new ol.layer.Vector({
 	id: 'clusters',
 	source: clusterSource,
 	style: function(feature) {
 		return getStyle(feature);
 	}
-});
+});*/
 
 var map = new ol.Map({
 	target: 'map',
@@ -92,7 +92,7 @@ var map = new ol.Map({
 	new ol.layer.Tile({
 		source: new ol.source.OSM()
 	}),
-	clusters
+	//clusters
 	],
 	view: new ol.View({
 		center: ol.proj.fromLonLat(center[0], center[1]),

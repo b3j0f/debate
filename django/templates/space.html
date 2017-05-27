@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card space" id="space-{{ elt.id }}">
 	<div class="card-image">
 		<img src="{{ elt.url }}" class="activator" />
 		<span class="card-title">{{ elt.name }}</span>
@@ -10,6 +10,8 @@
 	</div>
 	<div class="card-action">
 		{% include 'vote.html' %}
+		<div class="divider"></div>
+		{% include 'choices.html' %}
 	</div>
 	<div class="card-reveal">
 		<span class="card-title">{{ elt.name }}</span>
@@ -17,5 +19,7 @@
 		<span>{{ elt.description }}</span>
 		<div class="divider"></div>
 		{% include 'vote.html' %}
+		<div class="divider"></div>
+		{% include 'choices.html' %}
 	</div>
 </div>

@@ -7,46 +7,47 @@
 <div class="section scrollspy" id="search" name="Recherche">
 
 	<h1>
-		{% if page == 'gives' %}Don, troc ou vente{% elif page == 'shares' %}Emprunt ou location{% else %}Stockage{% endif %}
+		{% if page == 'topics' %}Sujets{% elif page == 'events' %}Évènements{% else %}Endroits{% endif %}
 	</h1>
 
 	<form action="/search" method="post" accept-charset="utf-8">
 		<div class="card row">
-			<div class="col s12 center" id="categories">
+			<div class="col s12 input-field topics">
+				<input type="text" name="tkeywords" id="tkeywords" />
+				<label for="tkeywords">Quoi ?</label>
 			</div>
-			<div class="col l6 s12 input-field">
+			<div class="col l6 s12 input-field events spaces">
 				<div class="row">
 					<div class="col s12 input-field">
-						<input type="text" name="keywords" id="keywords" placeholder="appareil photo nikon 87XZ" />
+						<input type="text" name="keywords" id="keywords" />
 						<label for="keywords">Quoi ?</label>
 					</div>
 				</div>
-
-				<div class="col s8 input-field">
-					<input type="text" name="where" id="where" placeholder="17 rue d'arras, Lille" />
-					<label for="where">Où ?</label>
+				<div class="spaces events">
+					<div class="col s8 input-field">
+						<input type="text" name="where" id="where" placeholder="17 rue d'arras, Lille" />
+						<label for="where">Où ?</label>
+					</div>
+					<div class="col s2 input-field">
+						<input type="number" name="perimeter" min="1" id="perimeter" value="5" />
+						<label for="perimeter">Périmètre (km)</label>
+					</div>
+					<div class="col s1 input-field">
+						<a onclick="getCurrentPosition();" class="btn-floating waves-effect waves-white">
+							<i class="material-icons">my_location</i>
+						</a>
+					</div>
 				</div>
-				<div class="col s2 input-field">
-					<input type="number" name="perimeter" min="1" id="perimeter" value="5" />
-					<label for="perimeter">Périmètre (km)</label>
+				<div class="col s6 input-field events">
+					<input type="start" class="datepicker" id="start" name="start" />
+					<label for="start">Début</label>
 				</div>
-				<div class="col s1 input-field">
-					<a onclick="getCurrentPosition();" class="btn-floating waves-effect waves-white">
-						<i class="material-icons">my_location</i>
-					</a>
-				</div>
-
-				<div class="col s6 input-field">
-					<input type="date" class="datepicker" id="when" name="when" />
-					<label for="when">Quand ?</label>
-				</div>
-				<div class="col s6">
-					<a class="btn btn-block waves-effect waves-white" name="periods" id="periods">
-						Périodes
-					</a>
+				<div class="col s6 input-field events">
+					<input type="end" class="datepicker" id="end" name="end" />
+					<label for="end">Fin</label>
 				</div>
 			</div>
-			<div class="col l6 s12">
+			<div class="col l6 s12 spaces events">
 				<div id="map" class="map"></div>
 			</div>
 			<div class="col s12 center">
@@ -55,14 +56,39 @@
 						<div class="collapsible-header center">
 							<i class="material-icons left">settings</i>
 							Affiner la recherche
+							<i class="material-icons right">settings</i>
 						</div>
 						<div class="collapsible-body">
 							<div class="row">
-								<div class="col s12 m6">
-									<h5>Propriétés</h5>
+								<div class="col s12 m6 input-field">
+									<input type="text" name="name" id="name" />
+									<label for="name">Nom</label>
 								</div>
-								<div class="col s12 m6">
-									<h5>Conditions</h5>
+								<div class="col s12 m6 input-field">
+									<textarea class="" name="description" id="description"></textarea>
+									<label for="description">Description</label>
+								</div>
+								<div class="col s12 input-field">
+									<input type="text" name="admins" id="admins" />
+									<label for="admins">Administrateurs</label>
+								</div>
+								<div class="events spaces">
+									<div class="col s6 input-field">
+										<input type="text" name="topics" id="topics" />
+										<label for="topics">Sujets</label>
+									</div>
+								</div>
+								<div class="events topics">
+									<div class="col s6 input-field">
+										<input type="text" name="spaces" id="spaces" />
+										<label for="spaces">Endroits</label>
+									</div>
+								</div>
+								<div class="topics spaces">
+									<div class="col s6 input-field">
+										<input type="text" name="events" id="events" />
+										<label for="events">Èvènements</label>
+									</div>
 								</div>
 							</div>
 						</div>

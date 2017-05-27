@@ -1,0 +1,26 @@
+<div class="card scheduling" id="scheduling-{{ elt.id }}">
+    <div class="card-image scheduling-image">
+        <img src="{{ elt.url }}" class="activator" />
+        <span class="card-title">
+            <a href="/topics/{{ elt.topic.id }}">{{ elt.topic.name }} - </a>
+            <a href="/spaces/{{ elt.space.id }}">{{ elt.space.name }}</a>
+        </span>
+    </div>
+    <div class="card-content scheduling-content">
+        <span class="card-title">{{ elt.name }}</span>
+        <span class="truncate">{{ elt.description }}</span>
+    </div>
+    <div class="card-action scheduling-action">
+        {% include 'vote.html' %}
+        {% include 'choices.html' %}
+    </div>
+    <div class="card-reveal scheduling-reveal">
+        <span class="card-title">{{ elt.name }}</span>
+        <div class="divider"></div>
+        <span>{{ elt.description }}</span>
+        <div class="divider"></div>
+        {% include 'vote.html' %}
+        <div class="divider"></div>
+        {% include 'choices.html' %}
+    </div>
+</div>

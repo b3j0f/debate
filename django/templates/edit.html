@@ -1,14 +1,11 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
 {% block content %}
 
-<h2>
-	{% if elt %}Modification{% else %}Ajout{% endif %} de <a class="dropdown-button btn-flat" data-constrainWidth="false" data-activates="types" data-hover="true" id="type"></a>
+{% load i18n %}
 
-	<ul id='types' class='dropdown-content'>
-	</ul>
+<h2>
+	{% if elt %}Modifier{% else %}Ajouter{% endif %} {% trans type %}
 </h2>
 
 <div id="edit">
@@ -79,7 +76,7 @@
 
 					<div class="col s6 input-field section">
 						<input type="date" class="datepicker" id="created" name="created" value="{{ elt.created }}" disabled/>
-						<label for="created">Début</label>
+						<label for="created">Création</label>
 					</div>
 					<div class="col s6 input-field section">
 						<input type="date" class="datepicker" id="modified" name="modified" value="{{ elt.modified }}" disabled />

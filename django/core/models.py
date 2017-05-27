@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.utils.encoding import python_2_unicode_compatible
 from django.db.models import F
 from django.dispatch import receiver
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, m2m_changed
 
 from address.models import AddressField, Country
 
@@ -108,6 +108,7 @@ class Media(models.Model):
     source = models.ForeignKey(
         CommentedElement, blank=True, related_name='medias'
     )
+    lang = models.CharField(max_length=5, blank=True, default='en-en')
 
 
 class AdministratedElement(CommentedElement):
@@ -116,7 +117,23 @@ class AdministratedElement(CommentedElement):
     name = models.CharField(max_length=50, blank=True, db_index=True)
     description = models.CharField(max_length=255, blank=True, db_index=True)
     public = models.BooleanField(default=True, blank=True, db_index=True)
-    admins = models.ManyToManyField(Account, default=[], blank=True)
+    admins = models.ManyToManyField(
+        Account, default=[], blank=True, related_name='administrated'
+    )
+
+    def __str__(self):
+        """Get output."""
+        return '{0} - {1}'.format(self.name, self.description)
+
+
+@receiver(m2m_changed, sender=AdministratedElement.admins.through)
+def avoidnoneadmins(action, instance, pk_set, **kwargs):
+    """Calculate stats related to need relationship."""
+    if action == 'pre_clear':
+        raise ValueError()
+
+    elif action == 'post_remove' and instance.count() == 0:
+        raise ValueError()
 
 
 @receiver(pre_save, sender=AdministratedElement)
@@ -150,24 +167,27 @@ class Space(AdministratedElement):
     def sorteddebates(self):
         """Get sorted topics by voting score."""
         return sorted(
-            list(self.topics.filter(scheduling=None)), key='score',
+            list(self.topics.filter(event=None)), key='score',
             reversed=True
         )
 
 
-class Scheduling(AdministratedElement):
-    """Scheduling model."""
+class Event(AdministratedElement):
+    """Event model."""
 
-    date = models.DateField(blank=True)
-    mduration = models.IntegerField(default=60, blank=True)
+    date = models.DateField(blank=True, db_index=True)
+    mduration = models.IntegerField(default=60, blank=True, db_index=True)
     space = models.ForeignKey(
-        Space, blank=True, related_name='schedulings'
+        Space, blank=True, related_name='events'
     )
-    topic = models.ForeignKey(Topic, blank=True, related_name='schedulings')
+    topic = models.ForeignKey(Topic, blank=True, related_name='events')
     base = models.OneToOneField(
         AdministratedElement,
-        parent_link=True, related_name='_scheduling', blank=True
+        parent_link=True, related_name='_event', blank=True
     )
+    address = AddressField(blank=True)
+    lon = models.FloatField(blank=True, db_index=True)
+    lat = models.FloatField(blank=True, db_index=True)
 
 
 class Vote(models.Model):
@@ -216,9 +236,24 @@ class Stat(models.Model):
 class ProjectionEntry(models.Model):
     """Projection Entry."""
 
-    scheduling = models.OneToOneField(Scheduling, blank=True)
+    event = models.OneToOneField(Event, blank=True)
     question = models.CharField(max_length=255, db_index=True)
     answers = models.CharField(max_length=255, db_index=True)
+
+
+class EventType(models.Model):
+    """Type model."""
+
+    name = models.CharField(max_length=50, primary_key=True)
+    description = models.CharField(max_length=255)
+
+
+class EventTypeChoice():
+    """Event type choice model."""
+
+    choice = models.ForeignKey(EventType, blank=True)
+    event = models.ForeignKey(Event, blank=True)
+    participative = models.BooleanField(default=False, blank=True)
 
 
 def getorcreatestat(**kwargs):

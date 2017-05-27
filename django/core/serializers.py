@@ -1,7 +1,7 @@
 """Serialization module."""
 
 from .models import (
-    Account, Topic, Media, Scheduling, Space, Tag, Vote, Stat
+    Account, Topic, Media, Event, Space, Tag, Vote, Stat
 )
 from .permissions import IsVoter, IsAdminOrReadOnly
 
@@ -54,14 +54,14 @@ class MediaSerializer(HyperlinkedModelSerializer):
         fields = ['file', 'url', 'topic']
 
 
-class SchedulingSerializer(HyperlinkedModelSerializer):
-    """Scheduling serializer."""
+class EventSerializer(HyperlinkedModelSerializer):
+    """Event serializer."""
 
     class Meta:
-        """Scheduling serializer meta class."""
+        """Event serializer meta class."""
 
-        model = Scheduling
-        fields = ['date', 'mduration', 'space']
+        model = Event
+        fields = ['date', 'mduration', 'space', 'topics', 'spaces']
 
 
 class SpaceSerializer(HyperlinkedModelSerializer):

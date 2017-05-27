@@ -9,52 +9,74 @@
 		<h1 class="header">
 			Partage du savoir
 		</h1>
-		<h5 class="subheader">Actuellement {{ topiccount }} sujets et {{ spacecount }} endroits ont été créés !</h5>
+		<h5 class="subheader">
+			Actuellement {{ topiccount }} sujets proposés, {{ schedulingcount }} traités, {{ spacecount }} endroits disponibles et {{ accountcount }} membres inscrits !
+		</h5>
 	</div>
 </div>
 
 <div class="divider"></div>
 
 <div class="section center">
-	<p>Cette plateforme facilite la mise en oeuvre et le partage de connaissance de conférences participatives en permettant :</p>
-	<ol>
-		<li>Tout utilisateur peut proposer un sujet de conférence ou voter pour des sujets déjà proposés</li>
-		<li>Tout utilisateur peut créer une organisation afin d'animer des conférences participatives</li>
-		<li>Toute personne peut consulter le contenu des sujets et sessions</li>
-	</ol>
-	<br/>
-	<p>Une conférence participative est une conférence qui se déroule en quatre étapes :</p>
-	<ol>
-		<li>1/4 du temps réservé à des experts du sujet qui font un résumé</li>
-		<li>1/2 du temps réservé à des groupes de travail de maximum 10 personnes qui vont traiter une question liée au sujet afin de s'approprier le plus possible le sujet</li>
-		<li>1/4 du temps réservé à réciter les synthèses et les questions des groupes de travail et à repasser en mode question/réponse avec les experts du sujet</li>
-		<li>mettre les informations de la conférence participative (vidéo, audio, texte) sur la plateforme afin d'en faire profiter un maximum de monde</li>
-	</ol>
-	<p>Cette dernière peut être accompagnée d'une "projection du savoir" qui consiste à poser les mêmes questions sur le sujet en début et fin de séance, et à noter les réponses, afin de montrer l'évolution de la pensée au cours d'une séance.</p>
+	<h4>
+		Cette plateforme facilite la mise en oeuvre et le partage de connaissance en permettant à tout utilisateur de :
+	</h4>
+	<h5><ul class="left-align">
+		<li>
+			- proposer et/ou voter pour des sujets
+		</li>
+		<li>
+			- créer, rejoindre ou voter pour un évènement afin d'animer ou de participer à un sujet (conférence, débat, café du savoir, cours, etc.)
+		</li>
+		<li>
+			- mettre du contenu sur la plateforme afin d'en faciliter l'accès*
+		</li>
+		<li>
+			- être notifié par un évènement près de chez soi sur un sujet ou thème donné
+		</li>
+	</ul></h5>
+	<small class="left-align">
+		* il deviendra possible de retrouver le moment précis où est prononcé un mot clef dans un discours vidéo, audio ou texte
+	</small>
+	<p>
+		Cette dernière peut être accompagnée d'une "projection du savoir" qui consiste à poser les mêmes questions sur le sujet en début et fin de séance, et à noter les réponses, afin de montrer l'évolution de la pensée au cours d'une séance.
+	</p>
 </div>
 
 <div class="divider"></div>
 
 <div class="row">
-	<div class="col s12 m6">
+	<div class="col s12 m4">
 		<div class="card hoverable">
 			<div class="card-image waves-effect waves-block waves-light">
-				<a href="/debates">
-					<img class="responsive-img purple" src="{% static 'img/conf.svg' %}" />
+				<a href="/events">
+					<img class="responsive-img teal" src="{% static 'img/conf.svg' %}" />
 					<div class="card-title">
-						Conférences participatives
+						Évènements
 					</div>
 				</a>
 			</div>
 		</div>
 	</div>
-	<div class="col s12 m6">
+	<div class="col s12 m4">
 		<div class="card hoverable">
 			<div class="card-image waves-effect waves-block waves-light">
-				<a href="/organizations">
-					<img class="responsive-img blue" src="{% static 'img/org.svg' %}" />
+				<a href="/topics">
+					<img class="responsive-img teal" src="{% static 'img/008-people.svg' %}" />
 					<div class="card-title">
-						Organisations
+						Sujets
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="col s12 m4">
+		<div class="card hoverable">
+			<div class="card-image waves-effect waves-block waves-light">
+				<a href="/spaces">
+					<img class="responsive-img teal" src="{% static 'img/001-map.svg' %}" />
+					<div class="card-title">
+						Endroits
 					</div>
 				</a>
 			</div>

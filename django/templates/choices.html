@@ -1,0 +1,16 @@
+{% if elt.choices.all %}
+<div class="collapsible choices">
+	<div class="collapsible-header">
+		Sujets au choix
+	</div>
+	<div class="collapsible-content">
+		{% for choice in elt.choices.all %}
+		<div class="choice {{ elt.type }}-{{ elt.id }}" id="choice-{{ elt.id }}">
+			<div class="choice-topic">
+				<a href="{{ choice.topic.url }}"> {{ choice.topic.name }} :</a>
+			</div>
+			{% include 'vote.html' with elt=choice %}
+		</div>
+		{% endfor %}
+	</div>
+</div>

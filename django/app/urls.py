@@ -1,5 +1,5 @@
 # coding: utf-8
-"""debate URL Configuration.
+"""knowledge sharing URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -24,16 +24,15 @@ from django.shortcuts import render
 from rest_framework.routers import DefaultRouter
 
 from .views import (
-    homeview, aboutview, loginview, logoutview, resetpwdview, editview,
-    accountview, accountsview, spacesview, faqview, topicsview,
-    searchview, statsview, votesview, mytopicsview, myspacesview,
-    myvotesview, mystatsview, edit, mycommentsview
+    homeview, aboutview, loginview, logoutview, resetpwdview, accountview,
+    accountsview, spacesview, faqview, topicsview, statsview, votesview,
+    mytopicsview, myspacesview, myvotesview, mystatsview, eventview,
+    mycommentsview, eventsview, myeventsview, topicview, spaceview,
 )
 
-from debate.views import (
-    TagViewSet, AccountViewSet, UserViewSet, TopicViewSet,
-    MediaViewSet, SchedulingViewSet, SpaceViewSet, VoteViewSet,
-    StatViewSet
+from core.views import (
+    TagViewSet, AccountViewSet, UserViewSet, TopicViewSet, StatViewSet,
+    MediaViewSet, EventViewSet, SpaceViewSet, VoteViewSet,
 )
 
 router = DefaultRouter()
@@ -42,12 +41,13 @@ router.register(r'accounts', AccountViewSet)
 router.register(r'tags', TagViewSet)
 router.register(r'topics', TopicViewSet)
 router.register(r'medias', MediaViewSet)
-router.register(r'schedulings', SchedulingViewSet)
+router.register(r'events', EventViewSet)
 router.register(r'spaces', SpaceViewSet)
 router.register(r'votes', VoteViewSet)
 router.register(r'stats', StatViewSet)
 
 urlpatterns = [
+    # API
     url(
         r'^{0}/auth/'.format(settings.API),
         include('rest_framework.urls', namespace='rest_framework')
@@ -55,30 +55,40 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^auth/', include('django.contrib.auth.urls'), name='auth'),
     url(r'^{0}/'.format(settings.API), include(router.urls), name='api'),
+    # basic pages
     url(r'^$', homeview),
-    url(r'^home$', homeview),
+    url(r'^home', homeview),
     url(r'^faq', faqview),
     url(r'^about', aboutview),
+    url(r'^stats', statsview),
+    # login
     url(r'^login', loginview),
     url(r'^logout', logoutview),
     url(r'^resetpwd', resetpwdview),
+    # search
     url(r'^accounts', accountsview),
-    url(r'^account', accountview),
     url(r'^spaces', spacesview),
+    url(r'^events', eventsview),
     url(r'^topics', topicsview),
     url(r'^votes', votesview),
-    url(r'^stats', statsview),
+    # account instances
     url(r'^myspaces', myspacesview),
+    url(r'^myevents', myeventsview),
     url(r'^mytopics', mytopicsview),
     url(r'^myvotes', myvotesview),
     url(r'^mycomments', mycommentsview),
     url(r'^mystats', mystatsview),
-    url(r'^edit', editview),
-    url(r'^search', searchview),
-    url(r'^space', edit),
-    url(r'^topic', edit),
-    url(r'^comment', edit),
-    url('test', lambda request: render(request, 'test.html'))
+    # single instance
+    url(r'^account', accountview),
+    url(r'^space', spaceview),
+    url(r'^topic', topicview),
+    url(r'^event', eventview),
+    # static & media content
 ] + static(
     settings.STATIC_URL, document_root=settings.STATIC_ROOT
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns.append(
+        url('test', lambda request: render(request, 'test.html'))
+    )

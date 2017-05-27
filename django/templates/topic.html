@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card topic" id="topic-{{ elt.id }}">
 	<div class="card-image">
 		<img src="{{ elt.url }}" class="activator" />
 		<span class="card-title">{{ elt.name }}</span>
@@ -9,7 +9,7 @@
 		<span class="truncate">{{ elt.description }}</span>
 	</div>
 	<div class="card-action">
-		{% include 'vote.html' %}
+		{% include 'vote.html' with elt=elt %}
 	</div>
 	<div class="card-reveal">
 		<span class="card-title">{{ elt.name }}</span>

@@ -1,4 +1,6 @@
-<div class="row">
+{% load static %}
+
+<div class="row {{ elt.type }}-vote">
 	<div class="col s6">
 		<a id="vote-{{ vote.id }}-dislike" class="vote-{{ vote.id }} btn-floating halfway-fab waves-effect waves-light {% if vote.score == -1 %}red{% else %}white{% endif %}" onclick="changeVote({{ elt.type }}, {{ elt.id }}, {{ vote.id }}, -1)">
 		<img class="responsive-img" src="{% static 'img/angry.svg' %}" />

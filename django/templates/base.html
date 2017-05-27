@@ -121,8 +121,10 @@
         <li><a href="/account" {% if page == 'account' %}class="active"{% endif %}>Mon compte</a></li>
         <li class="divider"></li>
         <li><a href="/mytopics" {% if page == 'mytopics' %}class="active"{% endif %}>Mes sujets</a></li>
-        <li><a href="/myspaces" {% if page == 'myspaces' %}class="active"{% endif %}>Mes spaces</a></li>
+        <li><a href="/myspaces" {% if page == 'myspaces' %}class="active"{% endif %}>Mes endroits</a></li>
+        <li><a href="/myevents" {% if page == 'myevents' %}class="active"{% endif %}>Mes évènements</a></li>
         <li><a href="/myvotes" {% if page == 'myvotes' %}class="active"{% endif %}>Mes votes</a></li>
+        <li class="divider"></li>
         <li><a href="/logout?next={{ next }}">déconnexion</a></li>
     </ul>
 
@@ -131,24 +133,33 @@
         <li class="{% if page == 'account' %}active{% endif %}"><a class="waves-effect waves-light" href="/account">{{ user.email }}</a></li>
         <li class="divider"></li>
         <li><a href="/mytopics" {% if page == 'mytopics' %}class="active"{% endif %}>Mes sujets</a></li>
-        <li><a href="/myspaces" {% if page == 'myspaces' %}class="active"{% endif %}>Mes spaces</a></li>
+        <li><a href="/myspaces" {% if page == 'myspaces' %}class="active"{% endif %}>Mes endroits</a></li>
+        <li><a href="/myevents" {% if page == 'myevents' %}class="active"{% endif %}>Mes évènements</a></li>
         <li><a href="/myvotes" {% if page == 'myvotes' %}class="active"{% endif %}>Mes votes</a></li>
         <li><a class="waves-effect waves-light btn" href="/logout?next={{ next }}">Déconnexion</a></li>
         {% else %}
         <li><a class="waves-effect waves-light btn" href="/login?next={{ next }}">Connexion</a></li>
         {% endif %}
         <li class="divider"></li>
-        <li class="{% if page == 'topics' %}active{% endif %}"><a href="/topics" class="waves-effect">Débats</a></li>
-        <li class="{% if page == 'spaces' %}active{% endif %}"><a href="/spaces" class="waves-effect">Endroits</a></li>
+        <li class="{% if page == 'events' %}active{% endif %}">
+            <a href="/events" class="waves-effect">Évènements</a>
+        </li>
+        <li class="{% if page == 'topics' %}active{% endif %}">
+            <a href="/topics" class="waves-effect">Sujets</a>
+        </li>
+        <li class="{% if page == 'spaces' %}active{% endif %}">
+            <a href="/spaces" class="waves-effect">Endroits</a>
+        </li>
     </ul>
 
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo{% if page == 'home' %} active{% endif %}">
-                    Knowledge Share
+                    Knowledge Sharing
                 </a>
                 <ul id="nav-lechangement" class="right hide-on-med-and-down">
+                    <li class="{% if page == 'events' %}active{% endif %}"><a href="/events">Évènements</a></li>
                     <li class="{% if page == 'topics' %}active{% endif %}"><a href="/topics">Sujets</a></li>
                     <li class="{% if page == 'spaces' %}active{% endif %}"><a href="/spaces">Endroits</a></li>
                     {% if user.is_authenticated %}
@@ -213,7 +224,7 @@
                     <ul>
                         {% if page != 'edit' %}
                         <li>
-                            <a href="/edit?type={{ page }}" class="btn-floating btn-large red pulse">
+                        <a href="/{{ type }}" class="btn-floating btn-large red pulse">
                                 <i class="material-icons">add</i>
                             </a>
                         </li>
@@ -280,7 +291,6 @@
                 </form>
             </div>
             <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Liens</h5>
                 <ul>
                     <li>
                         <a href="/stats">Statistiques</a>

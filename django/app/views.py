@@ -7,9 +7,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 
-from debate.models import (
-    Account, Topic, Space, Vote, Tag, Stat, Scheduling
-)
+from core.models import Account, Topic, Space, Vote, Stat, Event
 
 from .utils import sendemail
 
@@ -20,10 +18,10 @@ def requirelogin(func=None):
     """Decorator for requiring login."""
     nextpage = func.__name__[:-len('view')]
 
-    def _requirelogin(request):
+    def _requirelogin(request, *args, **kwargs):
         """Local require login."""
         if isinstance(request.user, User):
-            return func(request)
+            return func(request, *args, **kwargs)
 
         else:
             return redirect('login.html?next={0}'.format(nextpage))
@@ -40,13 +38,12 @@ def basecontext(request, page='home', tableofcontents=False):
     topiccount = Topic.objects.count()
     accountcount = Account.objects.count()
     votecount = Vote.objects.count()
-
-    categories = list(Tag.objects.all())
+    eventcount = Event.objects.count()
 
     result = {
         'spacecount': spacecount, 'topiccount': topiccount,
+        'eventcount': eventcount,
         'votecount': votecount, 'accountcount': accountcount,
-        'categories': categories,
         'page': page,
         'tableofcontents': tableofcontents,
         'next': request.GET.get('next', page),
@@ -219,28 +216,40 @@ def appcontext(request, page='home', tableofcontents=False):
     :rtype: dict
     """
     result = basecontext(request, page, tableofcontents)
+
+    result['admins'] = [Account.objects.filter(administrated__isnull=False)]
+
+    if page[-1] == 's':
+        result['type'] = page[:-1]
+
     return result
+
+
+def searchview(request, model):
+    """Search view."""
+    page = '{0}s'.format(model.__name__.lower())
+    context = appcontext(request, page=page, tableofcontents=True)
+    return render(request, 'search.html', context=context)
 
 
 def spacesview(request):
     """View of spaces."""
-    context = appcontext(request, page='spaces', tableofcontents=True)
-    context['fcategories'] = request.GET.get('fcategories')
+    return searchview(request, Space)
 
-    return render(request, 'search.html', context=context)
+
+def eventsview(request):
+    """View of events."""
+    return searchview(request, Event)
 
 
 def topicsview(request):
     """View of Topics."""
-    context = appcontext(request, page='topics', tableofcontents=True)
-    context['fcategories'] = request.GET.get('fcategories')
-    return render(request, 'search.html', context=context)
+    return searchview(request, Topic)
 
 
 def votesview(request):
     """View of votes."""
     context = appcontext(request, page='votes', tableofcontents=True)
-    context['fcategories'] = request.GET.get('fcategories')
     return render(request, 'search.html', context=context)
 
 
@@ -259,26 +268,39 @@ def accountview(request):
 
 def homeview(request):
     """Home view."""
-    context = basecontext(request, 'home', True)
+    context = basecontext(request, 'home')
     return render(request, 'home.html', context=context)
 
 
 @requirelogin
-def editview(request):
-    """Edit view."""
-    context = basecontext(request, 'edit', False)
-    return render(request, 'edit.html', context=context)
+def topicview(request):
+    """Topic view."""
+    return editview(request, 'topic')
 
 
-def edit(request):
+@requirelogin
+def eventview(request):
+    """Event view."""
+    return editview(request, 'event')
+
+
+@requirelogin
+def spaceview(request):
+    """Space view."""
+    return editview(request, 'space')
+
+
+def editview(request, page):
     """Edit space/topic."""
-    etype = request.POST['type']
+    context = appcontext(
+        request, page=page, tableofcontents=False
+    )
 
     if 'id' not in request.POST:
-        instance = globals()[etype.title()]()
+        instance = globals()[page.title()]()
 
     else:
-        instance = globals()[etype.title()].objects.get(id=request.POST['id'])
+        instance = globals()[page.title()].objects.get(id=request.POST['id'])
 
     def filldefaults(*names):
         """Fill defaults."""
@@ -287,7 +309,7 @@ def edit(request):
                 val = request.POST[name]
                 setattr(instance, name, val)
 
-    if etype in 'comment':
+    if page == 'comment':
         filldefaults('content', 'cited')
 
     else:
@@ -300,19 +322,14 @@ def edit(request):
         instance.save()
         instance.admins.set(admins)
 
-        if etype == 'space':
+        if page == 'space':
             filldefaults('address', 'lon', 'lat')
 
     instance.save()
 
     page = request.POST.get('next', 'search')
 
-    context = appcontext(
-        request, page=page, tableofcontents=True
-    )
-    context['fcategories'] = request.GET.get('fcategories')
-
-    return render(request, '{0}.html'.format(page), context=context)
+    return render(request, 'edit.html', context=context)
 
 
 def faqview(request):
@@ -327,17 +344,11 @@ def aboutview(request):
     return render(request, 'about.html', context=context)
 
 
-def searchview(request):
-    """Search view."""
-    context = basecontext(request, 'search', True)
-    return render(request, 'search.html', context=context)
-
-
 def statsview(request):
     """Stat view."""
     context = basecontext(request, 'stats', True)
     context['stats'] = Stat.objects.all()
-    context['schedulingcount'] = Scheduling.objects.count()
+    context['eventcount'] = Event.objects.count()
     context['usercount'] = Account.objects.filter(uses=None).count()
     return render(request, 'stats.html', context=context)
 
@@ -360,6 +371,12 @@ def myspacesview(request):
     return render(request, 'mysearch.html', context=context)
 
 
+def myeventsview(request):
+    """My events view."""
+    context = appcontext(request, 'myevents')
+    return render(request, 'mysearch.html', context=context)
+
+
 def mycommentsview(request):
     """My comments view."""
     context = appcontext(request, 'mycomments')
@@ -370,6 +387,6 @@ def mystatsview(request):
     """Stat view."""
     context = basecontext(request, 'stats', True)
     context['stats'] = Stat.objects.all()
-    context['schedulingcount'] = Scheduling.objects.count()
+    context['eventcount'] = Event.objects.count()
     context['usercount'] = Account.objects.filter(uses=None).count()
     return render(request, 'stats.html', context=context)

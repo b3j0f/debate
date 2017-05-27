@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'django_gravatar',
     'rest_framework',
     'address',
-    'debate',
+    'core',
     'raven.contrib.django.raven_compat'
 ]
 
